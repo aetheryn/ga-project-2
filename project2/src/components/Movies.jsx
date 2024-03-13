@@ -22,13 +22,13 @@ const Movies = (props) => {
         method: "GET",
         headers: {
           accept: "application/json",
-          Authorization: `Bearer ${import.meta.env.VITE_KEY}`,
+          Authorization: `Bearer ${import.meta.env.VITE_PUBLIC_KEY}`,
         },
         signal,
       };
 
       const response = await fetch(
-        import.meta.env.VITE_SERVER +
+        import.meta.env.VITE_PUBLIC_SERVER +
           "popular?language=en-US&page=" +
           props.pageNum,
         options

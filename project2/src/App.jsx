@@ -1,38 +1,30 @@
 import React, { useState } from "react";
-import LandingPage from "./components/LandingPage";
-import axios from "axios";
+import LoginPage from "./pages/LoginPage";
 import Movies from "./components/Movies";
 import NextButton from "./components/NextButton";
 import PrevButton from "./components/PrevButton";
 
 function App() {
-  const [user, setUser] = useState([{ username: "", password: "" }]);
-  const storeData = () => {
-    console.log("data is stored.");
-  };
-  const checkCredentials = () => {
-    // if username & password is valid
-  };
-
-  const [pageNum, setPageNum] = useState(1);
-  const handlePlus = () => {
-    setPageNum((prevPageNum) => prevPageNum + 1);
-  };
-  const handleMinus = () => {
-    setPageNum((prevPageNum) => prevPageNum - 1);
-  };
+  const [allRecords, setAllRecords] = useState([]);
+  const [recordId, setRecordId] = useState("");
+  const [watched, setWatched] = useState([]);
+  const [notInterested, setNotInterested] = useState([]);
+  const [toWatch, setToWatch] = useState([]);
 
   return (
     <div>
-      <LandingPage
-        user={user}
-        setUser={setUser}
-        storeData={storeData}
-      ></LandingPage>
-      <Movies pageNum={pageNum}></Movies>
-      {pageNum !== 1 && <PrevButton onClick={handleMinus}></PrevButton>}
-      <h1>{pageNum}</h1>
-      <NextButton onClick={handlePlus}></NextButton>
+      <LoginPage
+        allRecords={allRecords}
+        setAllRecords={setAllRecords}
+        recordId={recordId}
+        setRecordId={setRecordId}
+        watched={watched}
+        setWatched={setWatched}
+        notInterested={notInterested}
+        setNotInterested={setNotInterested}
+        toWatch={toWatch}
+        setToWatch={setToWatch}
+      ></LoginPage>
     </div>
   );
 }
