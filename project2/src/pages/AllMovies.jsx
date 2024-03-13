@@ -13,13 +13,17 @@ const AllMovies = () => {
     setPageNum((prevPageNum) => prevPageNum - 1);
   };
   return (
-    <div>
-      <NavBar></NavBar>
-      <Movies pageNum={pageNum}></Movies>
-      {pageNum !== 1 && <PrevButton onClick={handleMinus}></PrevButton>}
-      <h1>{pageNum}</h1>
-      <NextButton onClick={handlePlus}></NextButton>
-    </div>
+    <>
+      <div>
+        <NavBar></NavBar>
+      </div>
+      <div className="main">
+        <Movies pageNum={pageNum}></Movies>
+        {pageNum !== 1 && <PrevButton onClick={handleMinus}></PrevButton>}
+        <h1>{pageNum}</h1>
+        <NextButton onClick={handlePlus}></NextButton>
+      </div>
+    </>
   );
 };
 

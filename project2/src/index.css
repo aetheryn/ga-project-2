@@ -20,3 +20,7 @@ body {
   justify-content: center;
   align-items: center;
 }
+
+.main {
+  margin-left: 25%;
+}

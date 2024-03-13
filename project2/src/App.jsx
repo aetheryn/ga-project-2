@@ -5,6 +5,9 @@ import Movies from "./components/Movies";
 import NextButton from "./components/NextButton";
 import PrevButton from "./components/PrevButton";
 import AllMovies from "./pages/AllMovies";
+import Recommended from "./pages/Recommended";
+import Watched from "./pages/Watched";
+import ToWatch from "./pages/ToWatch";
 
 function App() {
   const [allRecords, setAllRecords] = useState([]);
@@ -34,6 +37,9 @@ function App() {
         }
       />
       <Route path="discover" element={<AllMovies></AllMovies>} />
+      <Route path="recommended" element={<Recommended></Recommended>} />
+      <Route path="watched" element={<Watched></Watched>} />
+      <Route path="to-watch" element={<ToWatch></ToWatch>} />
     </Routes>
   );
 }
