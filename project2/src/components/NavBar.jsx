@@ -1,4 +1,5 @@
 import React from "react";
+import { Navigate, Link } from "react-router-dom";
 
 const NavBar = () => {
   return (
@@ -9,7 +10,7 @@ const NavBar = () => {
         <li>Recommended</li>
         <li>To Watch</li>
       </ul>
-      <button>Log Out</button>
+      <Link to="/main">Log Out</Link>
     </div>
   );
 };

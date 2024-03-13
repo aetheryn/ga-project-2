@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Navigate } from "react-router-dom";
 
 const LoginPage = (props) => {
   const [username, setUsername] = useState("");
@@ -49,8 +50,9 @@ const LoginPage = (props) => {
           Array.from(props.allRecords[i].fields.toWatch.split(","))
         );
 
-        setUserAlert(false);
+        console.log("Login Successful");
         setUserLogin(true);
+        // return redirect("/discover");
       }
     }
 
@@ -60,39 +62,45 @@ const LoginPage = (props) => {
   };
 
   return (
-    <div>
-      <h1>Some Logo</h1>
-      <div>
-        <label htmlFor="username">Username</label>
-        <input
-          id="username"
-          value={username}
-          type="text"
-          placeholder="Enter your username"
-          onChange={(event) => {
-            setUsername(event.target.value);
-            setUserAlert(false);
-          }}
-        ></input>
-      </div>
-      {userAlert && (
+    <>
+      {!userLogin && (
         <div>
-          <h3>User does not exist.</h3>
-        </div>
-      )}
-      {userLogin && (
-        <div>
-          <h3>User successfully logged in.</h3>
-          <p>{props.id}</p>
-          <p>{username}</p>
-          <p>{props.watched}</p>
-          <p>{props.notInterested}</p>
-          <p>{props.toWatch}</p>
+          <h1>Some Logo</h1>
+          <div>
+            <label htmlFor="username">Username</label>
+            <input
+              id="username"
+              value={username}
+              type="text"
+              placeholder="Enter your username"
+              onChange={(event) => {
+                setUsername(event.target.value);
+                setUserAlert(false);
+              }}
+            ></input>
+          </div>
+          {userAlert && (
+            <div>
+              <h3>User does not exist.</h3>
+            </div>
+          )}
+          {userLogin && (
+            <div>
+              <h3>User successfully logged in.</h3>
+              <p>{props.id}</p>
+              <p>{username}</p>
+              <p>{props.watched}</p>
+              <p>{props.notInterested}</p>
+              <p>{props.toWatch}</p>
+            </div>
+          )}
+
+          <button onClick={handleClick}>LOGIN</button>
         </div>
       )}
 
-      <button onClick={handleClick}>LOGIN</button>
-    </div>
+      {userLogin && <Navigate to="/discover" replace={true} />}
+    </>
   );
 };
 

@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import NavBar from "../components/NavBar";
+import Movies from "../components/Movies";
+import PrevButton from "../components/PrevButton";
+import NextButton from "../components/NextButton";
 
-const PageOne = () => {
+const AllMovies = () => {
   const [pageNum, setPageNum] = useState(1);
   const handlePlus = () => {
     setPageNum((prevPageNum) => prevPageNum + 1);
@@ -20,4 +23,4 @@ const PageOne = () => {
   );
 };
 
-export default PageOne;
+export default AllMovies;
