@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import NavBar from "../components/NavBar";
 import moviesContext from "../context/movies-context";
+import RecMovs from "../components/RecMovs";
 
 const Recommended = () => {
   const recContext = useContext(moviesContext);
@@ -10,7 +11,7 @@ const Recommended = () => {
         <NavBar></NavBar>
       </div>
       <div className="main">
-        <p>{recContext.notInterested}</p>
+        <RecMovs></RecMovs>
       </div>
     </>
   );

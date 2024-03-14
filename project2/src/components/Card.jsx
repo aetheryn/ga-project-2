@@ -5,6 +5,8 @@ import CardModal from "./CardModal";
 
 const Card = (props) => {
   const [showModal, setShowModal] = useState(false);
+  const [isWatched, setIsWatched] = useState(false);
+  const [isToWatch, setIsToWatch] = useState(false);
 
   const handleClick = () => {
     setShowModal(true);
