@@ -37,9 +37,12 @@ function App() {
         }
       />
       <Route path="discover" element={<AllMovies></AllMovies>} />
-      <Route path="recommended" element={<Recommended></Recommended>} />
-      <Route path="watched" element={<Watched></Watched>} />
-      <Route path="to-watch" element={<ToWatch></ToWatch>} />
+      <Route
+        path="recommended"
+        element={<Recommended notInterested={notInterested}></Recommended>}
+      />
+      <Route path="watched" element={<Watched watched={watched}></Watched>} />
+      <Route path="to-watch" element={<ToWatch toWatch={toWatch}></ToWatch>} />
     </Routes>
   );
 }

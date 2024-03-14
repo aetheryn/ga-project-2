@@ -1,22 +1,16 @@
-import React from "react";
-import { useState, useEffect } from "react";
-import Card from "./Card";
+import React, { useState, useEffect } from "react";
 
-const Movies = (props) => {
-  const [populars, setPopulars] = useState([]);
+const WatchedMovies = (props) => {
+  const [watchedMovies, setWatchedMovies] = useState([]);
 
-  const formatRatings = (array) => {
-    const results = [...array];
-
-    for (let i = 0; i < results.length; i++) {
-      const newRating = Math.floor(results[i].vote_average * 10) / 10;
-      results[i].vote_average = newRating;
-    }
-
+  const formatRatings = (obj) => {
+    const results = { ...obj };
+    const newRating = Math.floor(results.vote_average * 10) / 10;
+    results.vote_average = newRating;
     return results;
   };
 
-  const getPopulars = async (signal) => {
+  const getWatchedMovieDetails = async (signal, index) => {
     try {
       const options = {
         method: "GET",
@@ -29,15 +23,17 @@ const Movies = (props) => {
 
       const response = await fetch(
         import.meta.env.VITE_PUBLIC_SERVER +
-          "popular?language=en-US&page=" +
-          props.pageNum,
+          props.watched[index] +
+          "?language=en-US",
         options
       );
 
       if (response.ok) {
         const data = await response.json();
-        const formattedData = formatRatings(data.results);
-        setPopulars(formattedData);
+        const formattedData = formatRatings(data);
+        setWatchedMovies((prevState) => {
+          [...prevState, { formattedData }];
+        });
       }
     } catch (error) {
       if (error.name !== "AbortError") {
@@ -48,7 +44,12 @@ const Movies = (props) => {
 
   useEffect(() => {
     const controller = new AbortController();
-    getPopulars(controller.signal);
+
+    for (let i = 0; i < props.watched.length; i++) {
+      getWatchedMovieDetails(controller.signal, i);
+    }
+
+    console.log(watchedMovies);
 
     return () => {
       controller.abort();
@@ -57,11 +58,11 @@ const Movies = (props) => {
 
   return (
     <div>
-      {populars.map((item, idx) => {
+      {watchedMovies.map((item) => {
         return (
           <Card
-            key={item.id}
-            movieId={item.id}
+            key={props.watched[index]}
+            movieId={props.watched[index]}
             title={item.title}
             overview={item.overview}
             imgurl={item.poster_path}
@@ -74,4 +75,4 @@ const Movies = (props) => {
   );
 };
 
-export default Movies;
+export default WatchedMovies;
