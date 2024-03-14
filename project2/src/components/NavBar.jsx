@@ -43,6 +43,15 @@ const NavBar = () => {
     }
   };
 
+  const handleLogOut = () => {
+    storeData();
+    navBarContext.setUsername("");
+    navBarContext.setRecordId("");
+    navBarContext.setWatched([]);
+    navBarContext.setNotInterested([]);
+    navBarContext.setToWatch([]);
+  };
+
   return (
     <nav className="nav">
       <img></img>
@@ -80,7 +89,7 @@ const NavBar = () => {
           </NavLink>
         </li>
 
-        <button onClick={() => storeData()}>Log Out</button>
+        <button onClick={() => handleLogOut()}>Log Out</button>
       </ul>
 
       {isLoggedOut && <Navigate to="/main"> </Navigate>}

@@ -34,8 +34,16 @@ const Card = (props) => {
           <h2>{props.title}</h2>
           <p> &#9733; {props.rating} / 10 </p>
         </div>
-        <WatchedButton movieId={props.movieId}></WatchedButton>
-        <ToWatchButton movieId={props.movieId}></ToWatchButton>
+        <WatchedButton
+          movieId={props.movieId}
+          isWatched={props.isWatched}
+          setIsWatched={props.setIsWatched}
+        ></WatchedButton>
+        <ToWatchButton
+          movieId={props.movieId}
+          isToWatch={props.isToWatch}
+          setIsToWatch={props.setIsToWatch}
+        ></ToWatchButton>
       </div>
     </>
   );

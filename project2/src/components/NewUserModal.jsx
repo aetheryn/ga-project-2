@@ -1,14 +1,12 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import ReactDOM from "react-dom";
 import styles from "./Modal.module.css";
 
 const OverLay = (props) => {
-  const usernameRef = useRef();
+  const [isUserCreated, setIsUserCreated] = useState(false);
 
   const createUser = async () => {
-    const newUsername = usernameRef.current.value;
-
-    if (newUsername.length >= 1 && newUsername.length <= 20) {
+    if (props.username.length >= 1 && props.username.length <= 20) {
       try {
         const options = {
           method: "POST",
@@ -18,7 +16,7 @@ const OverLay = (props) => {
           },
           body: JSON.stringify({
             fields: {
-              username: usernameRef.current.value,
+              username: props.username,
               watched: ",",
               notInterested: ",",
               toWatch: ",",
@@ -32,9 +30,8 @@ const OverLay = (props) => {
         );
 
         if (response.ok) {
-          props.setUsername(usernameRef.current.value);
           props.getAllRecords();
-          props.retrieveUserData();
+          setIsUserCreated(true);
         }
       } catch (error) {
         if (error.name !== "AbortError") {
@@ -46,14 +43,36 @@ const OverLay = (props) => {
     }
   };
 
+  const handleCreate = (event) => {
+    createUser();
+    // if (props.isFetchDone && isUserCreated) {
+    //   console.log("Retrieving...");
+    //   props.retrieveUserData();
+    // }
+  };
+
   return (
     <div className={styles.backdrop}>
       <div className={styles.modal}>
         <button onClick={() => props.setShowNewUserModal(false)}>Close</button>
         <div>
           <div>New Username</div>
-          <input ref={usernameRef} type="text"></input>
-          <button onClick={() => createUser()}>Create New User</button>
+          <input
+            value={props.username}
+            type="text"
+            onChange={(event) => {
+              props.setUsername(event.target.value);
+            }}
+          ></input>
+          <button onClick={() => handleCreate()} disabled={isUserCreated}>
+            Create New User
+          </button>
+          {isUserCreated && (
+            <div>
+              User has been created. Please close this page to Login with your
+              new username.
+            </div>
+          )}
         </div>
       </div>
     </div>
@@ -65,7 +84,9 @@ const NewUserModal = (props) => {
     <>
       {ReactDOM.createPortal(
         <OverLay
+          username={props.username}
           setUsername={props.setUsername}
+          isFetchDone={props.isFetchDone}
           setShowNewUserModal={props.setShowNewUserModal}
           getAllRecords={props.getAllRecords}
           retrieveUserData={props.retrieveUserData}
