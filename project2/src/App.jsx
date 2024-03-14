@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import LoginPage from "./pages/LoginPage";
 import { Navigate, Route, Routes } from "react-router-dom";
-import Movies from "./components/Movies";
-import NextButton from "./components/NextButton";
-import PrevButton from "./components/PrevButton";
+import moviesContext from "./context/movies-context";
 import AllMovies from "./pages/AllMovies";
 import Recommended from "./pages/Recommended";
 import Watched from "./pages/Watched";
@@ -17,33 +15,29 @@ function App() {
   const [toWatch, setToWatch] = useState([]);
 
   return (
-    <Routes>
-      <Route path="/" element={<Navigate replace to="/main" />} />
-      <Route
-        path="main"
-        element={
-          <LoginPage
-            allRecords={allRecords}
-            setAllRecords={setAllRecords}
-            recordId={recordId}
-            setRecordId={setRecordId}
-            watched={watched}
-            setWatched={setWatched}
-            notInterested={notInterested}
-            setNotInterested={setNotInterested}
-            toWatch={toWatch}
-            setToWatch={setToWatch}
-          ></LoginPage>
-        }
-      />
-      <Route path="discover" element={<AllMovies></AllMovies>} />
-      <Route
-        path="recommended"
-        element={<Recommended notInterested={notInterested}></Recommended>}
-      />
-      <Route path="watched" element={<Watched watched={watched}></Watched>} />
-      <Route path="to-watch" element={<ToWatch toWatch={toWatch}></ToWatch>} />
-    </Routes>
+    <moviesContext.Provider
+      value={{
+        allRecords,
+        setAllRecords,
+        recordId,
+        setRecordId,
+        watched,
+        setWatched,
+        notInterested,
+        setNotInterested,
+        toWatch,
+        setToWatch,
+      }}
+    >
+      <Routes>
+        <Route path="/" element={<Navigate replace to="/main" />} />
+        <Route path="main" element={<LoginPage></LoginPage>} />
+        <Route path="discover" element={<AllMovies></AllMovies>} />
+        <Route path="recommended" element={<Recommended></Recommended>} />
+        <Route path="watched" element={<Watched></Watched>} />
+        <Route path="to-watch" element={<ToWatch></ToWatch>} />
+      </Routes>
+    </moviesContext.Provider>
   );
 }
 

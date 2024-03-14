@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
 import NewUserModal from "../components/NewUserModal";
+import moviesContext from "../context/movies-context";
 
-const LoginPage = (props) => {
+const LoginPage = () => {
+  const userContext = useContext(moviesContext);
   const [username, setUsername] = useState("");
   const [userAlert, setUserAlert] = useState(false);
   const [userLogin, setUserLogin] = useState(false);
@@ -25,7 +27,7 @@ const LoginPage = (props) => {
 
       if (response.ok) {
         const data = await response.json();
-        props.setAllRecords(data.records);
+        userContext.setAllRecords(data.records);
       }
     } catch (error) {
       if (error.name !== "AbortError") {
@@ -39,12 +41,14 @@ const LoginPage = (props) => {
   }, []);
 
   const retrieveUserData = (event) => {
-    for (let i = 0; i < props.allRecords.length; i++) {
-      if (username === props.allRecords[i].fields.username) {
-        props.setRecordId(props.allRecords[i].id);
-        props.setWatched(props.allRecords[i].fields.watched);
-        props.setNotInterested(props.allRecords[i].fields.notInterested);
-        props.setToWatch(props.allRecords[i].fields.toWatch);
+    for (let i = 0; i < userContext.allRecords.length; i++) {
+      if (username === userContext.allRecords[i].fields.username) {
+        userContext.setRecordId(userContext.allRecords[i].id);
+        userContext.setWatched(userContext.allRecords[i].fields.watched);
+        userContext.setNotInterested(
+          userContext.allRecords[i].fields.notInterested
+        );
+        userContext.setToWatch(userContext.allRecords[i].fields.toWatch);
 
         console.log("Login Successful");
         setUserLogin(true);
@@ -75,16 +79,6 @@ const LoginPage = (props) => {
           {userAlert && (
             <div>
               <h3>User does not exist.</h3>
-            </div>
-          )}
-          {userLogin && (
-            <div>
-              <h3>User successfully logged in.</h3>
-              <p>{props.id}</p>
-              <p>{username}</p>
-              <p>{props.watched}</p>
-              <p>{props.notInterested}</p>
-              <p>{props.toWatch}</p>
             </div>
           )}
 
