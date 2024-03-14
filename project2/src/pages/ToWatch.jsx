@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import NavBar from "../components/NavBar";
 import moviesContext from "../context/movies-context";
+import ToWatchMovies from "../components/ToWatchMovies";
 
 const ToWatch = () => {
   const toWatchContext = useContext(moviesContext);
@@ -11,7 +12,7 @@ const ToWatch = () => {
         <NavBar></NavBar>
       </div>
       <div className="main">
-        <p>{toWatchContext.toWatch}</p>
+        <ToWatchMovies></ToWatchMovies>
       </div>
     </>
   );

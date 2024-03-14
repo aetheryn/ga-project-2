@@ -1,12 +1,12 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import moviesContext from "../context/movies-context";
 import Card from "./Card";
 
-const WatchedMovies = () => {
-  const watchedContext = useContext(moviesContext);
-  const [watchedMovies, setWatchedMovies] = useState([]);
+const ToWatchMovies = () => {
+  const toWatchContext = useContext(moviesContext);
+  const [toWatchMovies, setToWatchMovies] = useState([]);
 
-  const getWatchedMovie = async (id) => {
+  const getToWatchMovie = async (id) => {
     console.log(`Getting ${id}'s movie data.`);
     try {
       const options = {
@@ -24,7 +24,7 @@ const WatchedMovies = () => {
 
       if (response.ok) {
         const data = await response.json();
-        setWatchedMovies((prevState) => {
+        setToWatchMovies((prevState) => {
           return [...prevState, { data }];
         });
         console.log("Ok");
@@ -37,15 +37,15 @@ const WatchedMovies = () => {
   };
 
   useEffect(() => {
-    for (let i = 2; i < watchedContext.watched.length; i++) {
-      getWatchedMovie(watchedContext.watched[i]);
+    for (let i = 2; i < toWatchContext.toWatch.length; i++) {
+      getToWatchMovie(toWatchContext.toWatch[i]);
       console.log(`useEffect renders count ${i}`);
     }
   }, []);
 
   return (
     <div>
-      {watchedMovies.map((item) => {
+      {toWatchMovies.map((item) => {
         return (
           <Card
             key={item.data.id}
@@ -62,4 +62,4 @@ const WatchedMovies = () => {
   );
 };
 
-export default WatchedMovies;
+export default ToWatchMovies;

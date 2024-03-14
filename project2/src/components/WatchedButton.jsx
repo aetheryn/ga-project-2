@@ -5,12 +5,9 @@ const WatchedButton = (props) => {
   const watchedBtnCtx = useContext(moviesContext);
 
   const addWatched = () => {
-    console.log(props.movieId);
-    const watchedMoviesArray = [...watchedBtnCtx.watched];
-    console.log(watchedMoviesArray);
-    watchedMoviesArray.unshift(props.movieId);
-    watchedBtnCtx.setWatched(watchedMoviesArray);
-    console.log(watchedBtnCtx.watched);
+    watchedBtnCtx.setWatched((prevState) => {
+      return [...prevState, props.movieId];
+    });
   };
 
   return <button onClick={() => addWatched()}>Add to Watched</button>;

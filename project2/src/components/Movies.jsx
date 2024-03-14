@@ -41,11 +41,11 @@ const Movies = (props) => {
     return () => {
       controller.abort();
     };
-  }, []);
+  });
 
   return (
     <div>
-      {populars.map((item, idx) => {
+      {populars.map((item) => {
         return (
           <Card
             key={item.id}
