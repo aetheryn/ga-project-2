@@ -10,6 +10,7 @@ import ToWatch from "./pages/ToWatch";
 function App() {
   const [allRecords, setAllRecords] = useState([]);
   const [recordId, setRecordId] = useState("");
+  const [username, setUsername] = useState("");
   const [watched, setWatched] = useState([]);
   const [notInterested, setNotInterested] = useState([]);
   const [toWatch, setToWatch] = useState([]);
@@ -21,6 +22,8 @@ function App() {
         setAllRecords,
         recordId,
         setRecordId,
+        username,
+        setUsername,
         watched,
         setWatched,
         notInterested,

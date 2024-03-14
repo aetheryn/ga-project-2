@@ -5,17 +5,6 @@ import Card from "./Card";
 const Movies = (props) => {
   const [populars, setPopulars] = useState([]);
 
-  const formatRatings = (array) => {
-    const results = [...array];
-
-    for (let i = 0; i < results.length; i++) {
-      const newRating = Math.floor(results[i].vote_average * 10) / 10;
-      results[i].vote_average = newRating;
-    }
-
-    return results;
-  };
-
   const getPopulars = async (signal) => {
     try {
       const options = {
@@ -36,8 +25,7 @@ const Movies = (props) => {
 
       if (response.ok) {
         const data = await response.json();
-        const formattedData = formatRatings(data.results);
-        setPopulars(formattedData);
+        setPopulars(data.results);
       }
     } catch (error) {
       if (error.name !== "AbortError") {
@@ -53,7 +41,7 @@ const Movies = (props) => {
     return () => {
       controller.abort();
     };
-  });
+  }, []);
 
   return (
     <div>
@@ -65,7 +53,7 @@ const Movies = (props) => {
             title={item.title}
             overview={item.overview}
             imgurl={item.poster_path}
-            rating={item.vote_average}
+            rating={Math.floor(item.vote_average * 10) / 10}
             releaseDate={item.release_date}
           ></Card>
         );

@@ -5,7 +5,6 @@ import moviesContext from "../context/movies-context";
 
 const LoginPage = () => {
   const userContext = useContext(moviesContext);
-  const [username, setUsername] = useState("");
   const [userAlert, setUserAlert] = useState(false);
   const [userLogin, setUserLogin] = useState(false);
   const [showNewUserModal, setShowNewUserModal] = useState(false);
@@ -27,7 +26,9 @@ const LoginPage = () => {
 
       if (response.ok) {
         const data = await response.json();
+        console.log(data);
         userContext.setAllRecords(data.records);
+        console.log(userContext.allRecords);
       }
     } catch (error) {
       if (error.name !== "AbortError") {
@@ -40,15 +41,21 @@ const LoginPage = () => {
     getAllRecords();
   }, []);
 
-  const retrieveUserData = (event) => {
+  const retrieveUserData = () => {
     for (let i = 0; i < userContext.allRecords.length; i++) {
-      if (username === userContext.allRecords[i].fields.username) {
+      if (userContext.username === userContext.allRecords[i].fields.username) {
         userContext.setRecordId(userContext.allRecords[i].id);
-        userContext.setWatched(userContext.allRecords[i].fields.watched);
-        userContext.setNotInterested(
-          userContext.allRecords[i].fields.notInterested
+
+        userContext.setWatched(
+          Array.from(userContext.allRecords[i].fields.watched.split(","))
         );
-        userContext.setToWatch(userContext.allRecords[i].fields.toWatch);
+        userContext.setNotInterested(
+          Array.from(userContext.allRecords[i].fields.notInterested.split(","))
+        );
+
+        userContext.setToWatch(
+          Array.from(userContext.allRecords[i].fields.toWatch.split(","))
+        );
 
         console.log("Login Successful");
         setUserLogin(true);
@@ -67,11 +74,11 @@ const LoginPage = () => {
             <label htmlFor="username">Username</label>
             <input
               id="username"
-              value={username}
+              value={userContext.username}
               type="text"
               placeholder="Enter your username"
               onChange={(event) => {
-                setUsername(event.target.value);
+                userContext.setUsername(event.target.value);
                 setUserAlert(false);
               }}
             ></input>
@@ -89,7 +96,7 @@ const LoginPage = () => {
 
           {showNewUserModal && (
             <NewUserModal
-              setUsername={setUsername}
+              setUsername={userContext.setUsername}
               setShowNewUserModal={setShowNewUserModal}
               getAllRecords={getAllRecords}
               retrieveUserData={retrieveUserData}
@@ -97,8 +104,15 @@ const LoginPage = () => {
           )}
         </div>
       )}
-
-      {userLogin && <Navigate to="/discover" replace={true} />}
+      {userLogin && (
+        <>
+          {/* <div>{userContext.recordId}</div>
+          <div>{userContext.watched}</div>
+          <div>{userContext.notInterested}</div>
+          <div>{userContext.toWatch}</div> */}
+          <Navigate to="/discover" replace={true} />
+        </>
+      )}
     </>
   );
 };

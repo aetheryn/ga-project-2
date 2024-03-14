@@ -1,16 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import moviesContext from "../context/movies-context";
+import Card from "./Card";
 
-const WatchedMovies = (props) => {
+const WatchedMovies = () => {
+  const watchedContext = useContext(moviesContext);
   const [watchedMovies, setWatchedMovies] = useState([]);
 
-  const formatRatings = (obj) => {
-    const results = { ...obj };
-    const newRating = Math.floor(results.vote_average * 10) / 10;
-    results.vote_average = newRating;
-    return results;
-  };
-
-  const getWatchedMovieDetails = async (signal, index) => {
+  const getWatchedMovie = async (id) => {
+    console.log("getting Movie Data");
     try {
       const options = {
         method: "GET",
@@ -18,22 +15,19 @@ const WatchedMovies = (props) => {
           accept: "application/json",
           Authorization: `Bearer ${import.meta.env.VITE_PUBLIC_KEY}`,
         },
-        signal,
       };
 
       const response = await fetch(
-        import.meta.env.VITE_PUBLIC_SERVER +
-          props.watched[index] +
-          "?language=en-US",
+        import.meta.env.VITE_PUBLIC_SERVER + id + "?language=en-US",
         options
       );
 
       if (response.ok) {
         const data = await response.json();
-        const formattedData = formatRatings(data);
         setWatchedMovies((prevState) => {
-          [...prevState, { formattedData }];
+          return [...prevState, { data }];
         });
+        console.log("Ok");
       }
     } catch (error) {
       if (error.name !== "AbortError") {
@@ -43,31 +37,24 @@ const WatchedMovies = (props) => {
   };
 
   useEffect(() => {
-    const controller = new AbortController();
-
-    for (let i = 0; i < props.watched.length; i++) {
-      getWatchedMovieDetails(controller.signal, i);
+    for (let i = 0; i < watchedContext.watched.length - 2; i++) {
+      getWatchedMovie(watchedContext.watched[i]);
+      console.log("getting movie count");
     }
-
-    console.log(watchedMovies);
-
-    return () => {
-      controller.abort();
-    };
-  });
+  }, []);
 
   return (
     <div>
       {watchedMovies.map((item) => {
         return (
           <Card
-            key={props.watched[index]}
-            movieId={props.watched[index]}
-            title={item.title}
-            overview={item.overview}
-            imgurl={item.poster_path}
-            rating={item.vote_average}
-            releaseDate={item.release_date}
+            key={item.data.id}
+            movieId={item.data.id}
+            title={item.data.title}
+            overview={item.data.overview}
+            imgurl={item.data.poster_path}
+            rating={Math.floor(item.data.vote_average * 10) / 10}
+            releaseDate={item.data.release_date}
           ></Card>
         );
       })}

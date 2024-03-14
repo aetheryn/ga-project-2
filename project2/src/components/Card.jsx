@@ -32,7 +32,7 @@ const Card = (props) => {
           <h2>{props.title}</h2>
           <p> &#9733; {props.rating} / 10 </p>
         </div>
-        <WatchedButton></WatchedButton>
+        <WatchedButton movieId={props.movieId}></WatchedButton>
         <ToWatchButton></ToWatchButton>
       </div>
     </>

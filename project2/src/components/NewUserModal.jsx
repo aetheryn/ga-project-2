@@ -19,9 +19,9 @@ const OverLay = (props) => {
           body: JSON.stringify({
             fields: {
               username: usernameRef.current.value,
-              watched: "[]",
-              notInterested: "[]",
-              toWatch: "[]",
+              watched: ",",
+              notInterested: ",",
+              toWatch: ",",
             },
           }),
         };
