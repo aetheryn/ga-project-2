@@ -1,8 +1,10 @@
 import React, { useRef, useState } from "react";
 import ReactDOM from "react-dom";
 import styles from "./UserModal.module.css";
+import icon from "../../../icon.png";
 
 const OverLay = (props) => {
+  const [isInputValid, setIsInputValid] = useState(true);
   const [isUserCreated, setIsUserCreated] = useState(false);
 
   const createUser = async () => {
@@ -39,11 +41,12 @@ const OverLay = (props) => {
         }
       }
     } else {
-      console.log("Username has to be 1-20 characters long.");
+      setIsInputValid(false);
     }
   };
 
   const handleCreate = (event) => {
+    setIsInputValid(true);
     createUser();
     // if (props.isFetchDone && isUserCreated) {
     //   console.log("Retrieving...");
@@ -54,25 +57,63 @@ const OverLay = (props) => {
   return (
     <div className={styles.backdrop}>
       <div className={styles.modal}>
-        <button onClick={() => props.setShowNewUserModal(false)}>Close</button>
         <div>
-          <div>New Username</div>
-          <input
-            value={props.username}
-            type="text"
-            onChange={(event) => {
-              props.setUsername(event.target.value);
-            }}
-          ></input>
-          <button onClick={() => handleCreate()} disabled={isUserCreated}>
-            Create New User
+          <button
+            className={styles.cancel}
+            onClick={() => props.setShowNewUserModal(false)}
+            style={{ float: "right" }}
+          >
+            &#x2715;
           </button>
-          {isUserCreated && (
-            <div>
-              User has been created. Please close this page to Login with your
-              new username.
-            </div>
-          )}
+        </div>
+
+        <div className="centered">
+          <img className={styles.icon} src={icon}></img>
+        </div>
+
+        <div className="row">
+          <div className="col-3"></div>
+          <div className="col-6 centered">
+            <input
+              value={props.username}
+              placeholder="Enter New Username"
+              type="text"
+              onChange={(event) => {
+                props.setUsername(event.target.value);
+              }}
+            ></input>
+
+            <br />
+
+            <button
+              onClick={() => handleCreate()}
+              disabled={isUserCreated}
+              className={styles.button}
+            >
+              CREATE NEW USER
+            </button>
+
+            <br />
+
+            {!isInputValid && (
+              <>
+                <div style={{ color: "white", fontSize: "small" }}>
+                  Username has to be 1-20 characters long.
+                </div>
+                <br />
+              </>
+            )}
+
+            {isUserCreated && (
+              <>
+                <div style={{ color: "white", fontSize: "small" }}>
+                  User created. Close this page to login with your new username.
+                </div>
+                <br />
+              </>
+            )}
+          </div>
+          <div className="col-3"></div>
         </div>
       </div>
     </div>

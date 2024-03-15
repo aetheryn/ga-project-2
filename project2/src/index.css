@@ -48,6 +48,10 @@ input {
   justify-self: center;
 }
 
+button {
+  text-transform: uppercase;
+}
+
 button:hover {
   font-weight: 700;
 }
