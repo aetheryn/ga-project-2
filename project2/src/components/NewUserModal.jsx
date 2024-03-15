@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import ReactDOM from "react-dom";
-import styles from "./Modal.module.css";
+import styles from "./UserModal.module.css";
 
 const OverLay = (props) => {
   const [isUserCreated, setIsUserCreated] = useState(false);

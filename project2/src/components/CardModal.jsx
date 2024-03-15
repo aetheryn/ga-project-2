@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import styles from "./Modal.module.css";
+import styles from "./CardModal.module.css";
 import WatchedButton from "./WatchedButton";
 import ToWatchButton from "./ToWatchButton";
 

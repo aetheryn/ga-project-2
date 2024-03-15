@@ -1,6 +1,5 @@
 import React, { useContext, useState } from "react";
 import { Navigate, NavLink, Link } from "react-router-dom";
-import styles from "./NavBar.module.css";
 import moviesContext from "../context/movies-context";
 
 const NavBar = () => {

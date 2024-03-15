@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState, useRef } from "react";
 import { Navigate } from "react-router-dom";
 import NewUserModal from "../components/NewUserModal";
 import moviesContext from "../context/movies-context";
+import icon from "../../../icon.png";
 
 const LoginPage = () => {
   const userContext = useContext(moviesContext);
@@ -89,48 +90,61 @@ const LoginPage = () => {
   };
 
   return (
-    <>
-      {!userLogin && (
-        <div>
-          <h1>Some Logo</h1>
-          <div>
-            <label htmlFor="username">Username</label>
-            <input
-              id="username"
-              value={userContext.username}
-              type="text"
-              placeholder="Enter your username"
-              onChange={(event) => {
-                userContext.setUsername(event.target.value);
-                setUserAlert(false);
-              }}
-            ></input>
-          </div>
+    <div>
+      <div className="row">
+        <div className="col-2"></div>
+        <div className="col-8 centered">
+          <img className="icon" src={icon}></img>
+        </div>
+        <div className="col-2"></div>
+      </div>
+
+      <div className="login row">
+        <div className="col-3"></div>
+
+        <div className="col-6 centered">
+          <input
+            id="username"
+            value={userContext.username}
+            type="text"
+            placeholder="Enter Username"
+            onChange={(event) => {
+              userContext.setUsername(event.target.value);
+              setUserAlert(false);
+            }}
+          ></input>
 
           {userAlert && (
             <div>
               <h3>User does not exist.</h3>
             </div>
           )}
+          <br />
 
           <button onClick={handleLogIn}>LOGIN</button>
+
+          <br />
+
           <a href="#" onClick={() => handleCreate()}>
             Alternatively, create a new account.
           </a>
-
-          {showNewUserModal && (
-            <NewUserModal
-              username={userContext.username}
-              setUsername={userContext.setUsername}
-              isFetchDone={userContext.isFetchDone}
-              setIsFetchDone={userContext.isFetchDone}
-              setShowNewUserModal={setShowNewUserModal}
-              getAllRecords={getAllRecords}
-              retrieveUserData={retrieveUserData}
-            ></NewUserModal>
-          )}
         </div>
-      )}
+
+        <div className="col-3"></div>
+
+        {showNewUserModal && (
+          <NewUserModal
+            username={userContext.username}
+            setUsername={userContext.setUsername}
+            isFetchDone={userContext.isFetchDone}
+            setIsFetchDone={userContext.isFetchDone}
+            setShowNewUserModal={setShowNewUserModal}
+            getAllRecords={getAllRecords}
+            retrieveUserData={retrieveUserData}
+          ></NewUserModal>
+        )}
+      </div>
+
       {userLogin && userContext.isFetchDone && (
         <>
           {/* <div>{userContext.username}</div>
@@ -141,7 +155,7 @@ const LoginPage = () => {
           <Navigate to="/discover" replace={true} />
         </>
       )}
-    </>
+    </div>
   );
 };
 

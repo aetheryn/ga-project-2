@@ -1,28 +1,95 @@
 @import url("https://fonts.googleapis.com/css2?family=Oxygen:wght@300;400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
 * {
   box-sizing: border-box;
 }
 
-html {
-  font-family: "Oxygen", sans-serif;
-}
-
 body {
-  margin: 0;
-  background-color: whitesmoke;
+  margin: 0 auto;
+  background-image: linear-gradient(black, #404040);
+  height: 100vh;
+  font-family: "Poppins", sans-serif;
 }
 
 .centered {
   margin: 3rem auto;
   text-align: center;
-  display: flex;
+  display: grid;
   justify-content: center;
   align-items: center;
 }
 
+.icon {
+  height: 20rem;
+  margin-top: 5rem;
+  margin-bottom: -11rem;
+  display: flex;
+  justify-content: center;
+}
+
+input {
+  border-radius: 10px;
+  border-color: transparent;
+  width: 30rem;
+  height: 3rem;
+  padding-left: 1rem;
+  font-size: smaller;
+}
+
+.login > div > button {
+  background-color: #4e95d9;
+  border-color: transparent;
+  border-radius: 5px;
+  font-size: smaller;
+  color: white;
+  width: 5rem;
+  height: 2rem;
+  justify-self: center;
+}
+
+button:hover {
+  font-weight: 700;
+}
+
+.login > div > a {
+  font-size: 0.7rem;
+  color: #4e95d9;
+}
+
+.login > div > a:hover {
+  text-decoration: underline;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: 20%;
+  background-color: black;
+  height: 100%; /* Full height */
+  position: fixed; /* Make it stick, even on scroll */
+  overflow: auto;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+/* a:hover {
+  background-color: #4e95d9;
+  color: black;
+} */
+
+a.active {
+  background-color: #4e95d9;
+  color: black;
+}
+
 .main {
   margin-left: 20%;
+  background-color: #262626;
 }
 
 .card {
@@ -36,7 +103,7 @@ body {
   box-sizing: border-box;
 }
 
-img {
+.card > img {
   width: 100%;
   height: 100%;
 }
