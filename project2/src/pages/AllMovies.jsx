@@ -17,8 +17,14 @@ const AllMovies = () => {
       <div>
         <NavBar></NavBar>
       </div>
-      <div className="main">
-        <Movies pageNum={pageNum}></Movies>
+      <div className="main row">
+        <div className="col-1"></div>
+        <div className="col-10">
+          <Movies pageNum={pageNum}></Movies>
+        </div>
+        <div className="col-1"></div>
+      </div>
+      <div className="main centered">
         {pageNum !== 1 && <PrevButton onClick={handleMinus}></PrevButton>}
         <h1>{pageNum}</h1>
         <NextButton onClick={handlePlus}></NextButton>

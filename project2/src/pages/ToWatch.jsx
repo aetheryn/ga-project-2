@@ -11,8 +11,12 @@ const ToWatch = () => {
       <div>
         <NavBar></NavBar>
       </div>
-      <div className="main">
-        <ToWatchMovies></ToWatchMovies>
+      <div className="main row">
+        <div className="col-1"></div>
+        <div className="col-10">
+          <ToWatchMovies></ToWatchMovies>
+        </div>
+        <div className="col-1"></div>
       </div>
     </>
   );

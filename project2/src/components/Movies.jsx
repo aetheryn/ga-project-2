@@ -44,18 +44,20 @@ const Movies = (props) => {
   });
 
   return (
-    <div>
+    <div className="row">
       {populars.map((item) => {
         return (
-          <Card
-            key={item.id}
-            movieId={item.id}
-            title={item.title}
-            overview={item.overview}
-            imgurl={item.poster_path}
-            rating={Math.floor(item.vote_average * 10) / 10}
-            releaseDate={item.release_date}
-          ></Card>
+          <div className="col-3">
+            <Card
+              key={item.id}
+              movieId={item.id}
+              title={item.title}
+              overview={item.overview}
+              imgurl={item.poster_path}
+              rating={Math.floor(item.vote_average * 10) / 10}
+              releaseDate={item.release_date}
+            ></Card>
+          </div>
         );
       })}
     </div>

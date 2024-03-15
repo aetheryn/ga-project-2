@@ -10,8 +10,12 @@ const Recommended = () => {
       <div>
         <NavBar></NavBar>
       </div>
-      <div className="main">
-        <RecMovs></RecMovs>
+      <div className="main row">
+        <div className="col-1"></div>
+        <div className="col-10">
+          <RecMovs></RecMovs>
+        </div>
+        <div className="col-1"></div>
       </div>
     </>
   );

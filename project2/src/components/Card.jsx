@@ -26,24 +26,31 @@ const Card = (props) => {
         ></CardModal>
       )}
 
-      <div>
+      <div className="card">
         <img
           src={`https://media.themoviedb.org/t/p/w220_and_h330_face${props.imgurl}`}
         ></img>
-        <div onClick={handleClick}>
-          <h2>{props.title}</h2>
-          <p> &#9733; {props.rating} / 10 </p>
+        <div className="content">
+          <div onClick={handleClick}>
+            <h2>{props.title}</h2>
+            <p> &#9733; {props.rating} / 10 </p>
+          </div>
+
+          <div>
+            <WatchedButton
+              movieId={props.movieId}
+              isWatched={props.isWatched}
+              setIsWatched={props.setIsWatched}
+            ></WatchedButton>
+          </div>
+          <div>
+            <ToWatchButton
+              movieId={props.movieId}
+              isToWatch={props.isToWatch}
+              setIsToWatch={props.setIsToWatch}
+            ></ToWatchButton>
+          </div>
         </div>
-        <WatchedButton
-          movieId={props.movieId}
-          isWatched={props.isWatched}
-          setIsWatched={props.setIsWatched}
-        ></WatchedButton>
-        <ToWatchButton
-          movieId={props.movieId}
-          isToWatch={props.isToWatch}
-          setIsToWatch={props.setIsToWatch}
-        ></ToWatchButton>
       </div>
     </>
   );
