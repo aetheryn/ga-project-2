@@ -1,12 +1,24 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import WatchedButton from "./WatchedButton";
 import ToWatchButton from "./ToWatchButton";
 import CardModal from "./CardModal";
+import moviesContext from "../context/movies-context";
 
 const Card = (props) => {
+  const cardContext = useContext(moviesContext);
   const [showModal, setShowModal] = useState(false);
   const [isWatched, setIsWatched] = useState(false);
   const [isToWatch, setIsToWatch] = useState(false);
+
+  useEffect(() => {
+    if (cardContext.watched.indexOf(`${props.movieId}`) > 1) {
+      setIsWatched(true);
+    }
+
+    if (cardContext.toWatch.indexOf(`${props.movieId}`) > 1) {
+      setIsToWatch(true);
+    }
+  });
 
   const handleClick = () => {
     setShowModal(true);
@@ -30,6 +42,7 @@ const Card = (props) => {
         <img
           src={`https://media.themoviedb.org/t/p/w220_and_h330_face${props.imgurl}`}
         ></img>
+
         <div className="content">
           <div onClick={handleClick}>
             <h2>{props.title}</h2>
@@ -39,15 +52,13 @@ const Card = (props) => {
           <div>
             <WatchedButton
               movieId={props.movieId}
-              isWatched={props.isWatched}
-              setIsWatched={props.setIsWatched}
+              isWatched={isWatched}
             ></WatchedButton>
           </div>
           <div>
             <ToWatchButton
               movieId={props.movieId}
-              isToWatch={props.isToWatch}
-              setIsToWatch={props.setIsToWatch}
+              isToWatch={isToWatch}
             ></ToWatchButton>
           </div>
         </div>

@@ -37,6 +37,7 @@ const WatchedMovies = () => {
   };
 
   useEffect(() => {
+    console.log(watchedContext.watched);
     for (let i = 2; i < watchedContext.watched.length; i++) {
       getWatchedMovie(watchedContext.watched[i]);
       console.log(`useEffect renders count ${i}`);

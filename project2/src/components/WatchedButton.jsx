@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import moviesContext from "../context/movies-context";
 
 const WatchedButton = (props) => {
@@ -6,11 +6,15 @@ const WatchedButton = (props) => {
 
   const addWatched = () => {
     watchedBtnCtx.setWatched((prevState) => {
-      return [...prevState, props.movieId];
+      return [...prevState, `${props.movieId}`];
     });
   };
 
-  return <button onClick={() => addWatched()}>Add to Watched</button>;
+  return (
+    <button onClick={() => addWatched()} disabled={props.isWatched}>
+      Add to Watched
+    </button>
+  );
 };
 
 export default WatchedButton;

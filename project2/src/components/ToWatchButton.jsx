@@ -6,11 +6,15 @@ const ToWatchButton = (props) => {
 
   const addToWatch = () => {
     toWatchBtnContext.setToWatch((prevState) => {
-      return [...prevState, props.movieId];
+      return [...prevState, `${props.movieId}`];
     });
   };
 
-  return <button onClick={() => addToWatch()}>Add to To-Watch List</button>;
+  return (
+    <button onClick={() => addToWatch()} disabled={props.isToWatch}>
+      Add to To-Watch List
+    </button>
+  );
 };
 
 export default ToWatchButton;
