@@ -128,9 +128,9 @@ const LoginPage = () => {
 
           <br />
 
-          <a href="#" onClick={() => handleCreate()}>
+          <button className="new-account" onClick={() => handleCreate()}>
             Alternatively, create a new account.
-          </a>
+          </button>
         </div>
 
         <div className="col-3"></div>

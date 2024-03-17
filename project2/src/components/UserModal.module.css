@@ -26,6 +26,7 @@
   background-color: transparent;
   color: white;
   margin: 1rem 1rem 0rem 0rem;
+  float: inline-end;
 }
 
 .icon {

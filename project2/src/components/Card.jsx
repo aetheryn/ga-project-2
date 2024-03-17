@@ -35,6 +35,8 @@ const Card = (props) => {
           rating={props.rating}
           releaseDate={props.releaseDate}
           setShowModal={setShowModal}
+          isWatched={isWatched}
+          isToWatch={isToWatch}
         ></CardModal>
       )}
 
@@ -48,18 +50,19 @@ const Card = (props) => {
             <h2>{props.title}</h2>
             <p> &#9733; {props.rating} / 10 </p>
           </div>
-
-          <div>
-            <WatchedButton
-              movieId={props.movieId}
-              isWatched={isWatched}
-            ></WatchedButton>
-          </div>
-          <div>
-            <ToWatchButton
-              movieId={props.movieId}
-              isToWatch={isToWatch}
-            ></ToWatchButton>
+          <div className="card-buttons">
+            <div className="row">
+              <WatchedButton
+                movieId={props.movieId}
+                isWatched={isWatched}
+              ></WatchedButton>
+            </div>
+            <div className="row">
+              <ToWatchButton
+                movieId={props.movieId}
+                isToWatch={isToWatch}
+              ></ToWatchButton>
+            </div>
           </div>
         </div>
       </div>

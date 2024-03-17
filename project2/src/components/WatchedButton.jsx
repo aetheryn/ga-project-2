@@ -8,10 +8,16 @@ const WatchedButton = (props) => {
     watchedBtnCtx.setWatched((prevState) => {
       return [...prevState, `${props.movieId}`];
     });
+
+    console.log("Clicked.");
   };
 
   return (
-    <button onClick={() => addWatched()} disabled={props.isWatched}>
+    <button
+      onClick={() => addWatched()}
+      disabled={props.isWatched}
+      className="card-button"
+    >
       Add to Watched
     </button>
   );

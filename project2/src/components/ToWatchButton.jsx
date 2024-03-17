@@ -11,7 +11,11 @@ const ToWatchButton = (props) => {
   };
 
   return (
-    <button onClick={() => addToWatch()} disabled={props.isToWatch}>
+    <button
+      onClick={() => addToWatch()}
+      disabled={props.isToWatch}
+      className="card-button"
+    >
       Add to To-Watch List
     </button>
   );

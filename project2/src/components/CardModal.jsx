@@ -31,10 +31,16 @@ const OverLay = (props) => {
 
             <div className="row">
               <div className="col-6">
-                <WatchedButton></WatchedButton>
+                <WatchedButton
+                  movieId={props.movieId}
+                  isWatched={props.isWatched}
+                ></WatchedButton>
               </div>
               <div className="col-6">
-                <ToWatchButton></ToWatchButton>
+                <ToWatchButton
+                  movieId={props.movieId}
+                  isToWatch={props.isToWatch}
+                ></ToWatchButton>
               </div>
             </div>
 
@@ -61,6 +67,8 @@ const CardModal = (props) => {
           rating={props.rating}
           releaseDate={props.releaseDate}
           setShowModal={props.setShowModal}
+          isWatched={props.isWatched}
+          isToWatch={props.isToWatch}
         ></OverLay>,
         document.querySelector("#modal-root")
       )}
