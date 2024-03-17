@@ -9,13 +9,16 @@ const Watched = () => {
       <div>
         <NavBar></NavBar>
       </div>
-      <div className="main row">
-        <div className="col-1"></div>
-        <div className="col-10">
-          <WatchedMovies></WatchedMovies>
+      <div className="main">
+        <div className="row">
+          <div className="col-1"></div>
+          <div className="col-10 display">
+            <h1>You have watched...</h1>
+            <WatchedMovies></WatchedMovies>
+          </div>
+          <div className="col-1"></div>
         </div>
       </div>
-      <div className="col-1"></div>
     </>
   );
 };

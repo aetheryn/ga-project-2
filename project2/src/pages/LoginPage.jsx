@@ -90,7 +90,7 @@ const LoginPage = () => {
   };
 
   return (
-    <div>
+    <div className="login-page">
       <div className="row">
         <div className="col-2"></div>
         <div className="col-8 centered">

@@ -30,13 +30,13 @@ const OverLay = (props) => {
             <p className={styles.rating}> &#9733; {props.rating} / 10 </p>
 
             <div className="row">
-              <div className="col-6">
+              <div className="col-5">
                 <WatchedButton
                   movieId={props.movieId}
                   isWatched={props.isWatched}
                 ></WatchedButton>
               </div>
-              <div className="col-6">
+              <div className="col-5">
                 <ToWatchButton
                   movieId={props.movieId}
                   isToWatch={props.isToWatch}

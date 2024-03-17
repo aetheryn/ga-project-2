@@ -20,15 +20,27 @@ const AllMovies = () => {
       <div className="main">
         <div className="row">
           <div className="col-1"></div>
-          <div className="col-10">
+          <div className="col-10 display">
+            <h1>Movies List</h1>
             <Movies pageNum={pageNum}></Movies>
           </div>
           <div className="col-1"></div>
         </div>
-        <div className="centered">
-          {pageNum !== 1 && <PrevButton onClick={handleMinus}></PrevButton>}
-          <h1>{pageNum}</h1>
-          <NextButton onClick={handlePlus}></NextButton>
+
+        <div className="page row">
+          <div className="col-4"></div>
+          <div className="col-1">
+            {pageNum !== 1 && <PrevButton onClick={handleMinus}></PrevButton>}
+          </div>
+
+          <div className="page-num col-2">
+            <h1>{pageNum}</h1>
+          </div>
+
+          <div className="next-btn col-1">
+            <NextButton onClick={handlePlus}></NextButton>
+          </div>
+          <div className="col-4"></div>
         </div>
       </div>
     </>
