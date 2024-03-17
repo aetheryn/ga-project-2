@@ -5,19 +5,40 @@ const ToWatchButton = (props) => {
   const toWatchBtnContext = useContext(moviesContext);
 
   const addToWatch = () => {
+    if (props.isWatched) {
+      props.removeWatched();
+    }
     toWatchBtnContext.setToWatch((prevState) => {
       return [...prevState, `${props.movieId}`];
     });
   };
 
+  // const removeToWatch = () => {
+  //   console.log(toWatchBtnContext.toWatch.indexOf(`${props.movieId}`));
+  //   const tempToWatchArray = [...toWatchBtnContext.toWatch];
+  //   tempToWatchArray.splice(tempToWatchArray.indexOf(`${props.movieId}`), 1);
+  //   toWatchBtnContext.setToWatch(tempToWatchArray);
+  //   console.log(toWatchBtnContext.toWatch);
+  //   props.setIsToWatch(false);
+  // };
+
   return (
-    <button
-      onClick={() => addToWatch()}
-      disabled={props.isToWatch}
-      className="card-button"
-    >
-      Add to To-Watch List
-    </button>
+    <>
+      {!props.isToWatch && (
+        <button onClick={() => addToWatch()} className="card-button">
+          Add to To-Watch List
+        </button>
+      )}
+
+      {props.isToWatch && (
+        <button
+          className="active-card-button"
+          onClick={() => props.removeToWatch()}
+        >
+          Remove from Your List
+        </button>
+      )}
+    </>
   );
 };
 

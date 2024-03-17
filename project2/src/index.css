@@ -153,6 +153,21 @@ button:disabled:hover {
   margin: 0 0 0.2rem 0;
 }
 
+.active-card-button {
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  width: 190px;
+  border-radius: 5px;
+  border-style: solid;
+  margin: 0 0 0.2rem 0;
+  background-color: grey;
+  color: white;
+  border-color: transparent;
+}
+
+.active-card-button:hover {
+  background-color: #4e95d9;
+}
 .display {
   margin-top: 10rem;
 }

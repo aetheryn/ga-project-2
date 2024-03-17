@@ -44,7 +44,7 @@ const RecMovs = () => {
       getRecommendations(recContext.watched[i]);
       console.log(`useEffect renders count ${i}`);
     }
-  }, [recContext.watched]);
+  }, []);
 
   return (
     <div className="row">

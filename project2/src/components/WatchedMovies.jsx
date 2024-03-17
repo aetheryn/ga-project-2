@@ -42,7 +42,7 @@ const WatchedMovies = () => {
       getWatchedMovie(watchedContext.watched[i]);
       console.log(`useEffect renders count ${i}`);
     }
-  }, [watchedContext.watched]);
+  }, []);
 
   return (
     <div className="row">

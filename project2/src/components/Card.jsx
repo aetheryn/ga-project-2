@@ -24,6 +24,24 @@ const Card = (props) => {
     setShowModal(true);
   };
 
+  const removeWatched = () => {
+    console.log(cardContext.watched.indexOf(`${props.movieId}`));
+    const tempWatchedArray = [...cardContext.watched];
+    tempWatchedArray.splice(tempWatchedArray.indexOf(`${props.movieId}`), 1);
+    cardContext.setWatched(tempWatchedArray);
+    console.log(cardContext.toWatch);
+    setIsWatched(false);
+  };
+
+  const removeToWatch = () => {
+    console.log(cardContext.toWatch.indexOf(`${props.movieId}`));
+    const tempToWatchArray = [...cardContext.toWatch];
+    tempToWatchArray.splice(tempToWatchArray.indexOf(`${props.movieId}`), 1);
+    cardContext.setToWatch(tempToWatchArray);
+    console.log(cardContext.toWatch);
+    setIsToWatch(false);
+  };
+
   return (
     <>
       {showModal && (
@@ -36,7 +54,11 @@ const Card = (props) => {
           releaseDate={props.releaseDate}
           setShowModal={setShowModal}
           isWatched={isWatched}
+          setIsWatched={setIsWatched}
           isToWatch={isToWatch}
+          setIsToWatch={setIsToWatch}
+          removeWatched={removeWatched}
+          removeToWatch={removeToWatch}
         ></CardModal>
       )}
 
@@ -54,13 +76,21 @@ const Card = (props) => {
             <div className="row">
               <WatchedButton
                 movieId={props.movieId}
+                isToWatch={isToWatch}
+                removeToWatch={removeToWatch}
                 isWatched={isWatched}
+                setIsWatched={setIsWatched}
+                removeWatched={removeWatched}
               ></WatchedButton>
             </div>
             <div className="row">
               <ToWatchButton
                 movieId={props.movieId}
+                isWatched={isWatched}
+                removeWatched={removeWatched}
                 isToWatch={isToWatch}
+                setIsToWatch={setIsToWatch}
+                removeToWatch={removeToWatch}
               ></ToWatchButton>
             </div>
           </div>

@@ -33,13 +33,21 @@ const OverLay = (props) => {
               <div className="col-5">
                 <WatchedButton
                   movieId={props.movieId}
+                  isToWatch={props.isToWatch}
+                  removeToWatch={props.removeToWatch}
                   isWatched={props.isWatched}
+                  setIsWatched={props.setIsWatched}
+                  removeWatched={props.removeWatched}
                 ></WatchedButton>
               </div>
               <div className="col-5">
                 <ToWatchButton
                   movieId={props.movieId}
+                  isWatched={props.isWatched}
+                  removeWatched={props.removeWatched}
                   isToWatch={props.isToWatch}
+                  setIsToWatch={props.setIsToWatch}
+                  removeToWatch={props.removeToWatch}
                 ></ToWatchButton>
               </div>
             </div>
@@ -68,7 +76,11 @@ const CardModal = (props) => {
           releaseDate={props.releaseDate}
           setShowModal={props.setShowModal}
           isWatched={props.isWatched}
+          setIsWatched={props.setIsWatched}
           isToWatch={props.isToWatch}
+          setIsToWatch={props.setIsToWatch}
+          removeWatched={props.removeWatched}
+          removeToWatch={props.removeToWatch}
         ></OverLay>,
         document.querySelector("#modal-root")
       )}
