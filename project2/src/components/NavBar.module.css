@@ -1,0 +1,61 @@
+.navbar {
+  display: block;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: 25%;
+  background-color: black;
+  height: 100%;
+  position: fixed;
+  overflow: auto;
+}
+
+.navlinks {
+  margin-top: -1.7rem;
+}
+
+li > a {
+  text-indent: 2rem;
+  text-decoration: none;
+  color: white;
+  padding: 0.7rem 0 0.7rem 0;
+  font-size: x-large;
+}
+
+li > a:hover {
+  background-color: #4e95d9;
+  color: black;
+}
+
+li > a.active {
+  background-color: #4e95d9;
+  color: black;
+}
+
+.navicon {
+  margin-top: -1.7rem;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon {
+  height: 250px;
+}
+
+.logout {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  padding: 20rem 0 0 0;
+  /* bottom: 5rem; */
+}
+
+.logout > button {
+  color: #4e95d9;
+  font-size: 150%;
+  background-color: transparent;
+  border-color: transparent;
+  /* width: 150px;
+  height: 200%; */
+}

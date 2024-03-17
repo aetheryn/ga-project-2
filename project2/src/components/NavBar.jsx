@@ -1,6 +1,8 @@
 import React, { useContext, useState } from "react";
 import { Navigate, NavLink, Link } from "react-router-dom";
 import moviesContext from "../context/movies-context";
+import styles from "./NavBar.module.css";
+import icon from "../../../icon.png";
 
 const NavBar = () => {
   const [isLoggedOut, setIsLoggedOut] = useState(false);
@@ -52,9 +54,12 @@ const NavBar = () => {
   };
 
   return (
-    <nav className="nav">
-      <img></img>
-      <ul>
+    <div className={styles.navbar}>
+      <div className={styles.navicon}>
+        <img className={styles.icon} src={icon}></img>
+      </div>
+
+      <div className={styles.navlinks}>
         <li className="row">
           <NavLink
             className={(navData) => (navData.isActive ? styles.active : "")}
@@ -87,12 +92,14 @@ const NavBar = () => {
             To-Watch List
           </NavLink>
         </li>
+      </div>
 
+      <div className={styles.logout}>
         <button onClick={() => handleLogOut()}>Log Out</button>
-      </ul>
+      </div>
 
       {isLoggedOut && <Navigate to="/main"> </Navigate>}
-    </nav>
+    </div>
   );
 };
 

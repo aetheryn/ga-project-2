@@ -115,9 +115,12 @@ const LoginPage = () => {
           ></input>
 
           {userAlert && (
-            <div>
-              <h3>User does not exist.</h3>
-            </div>
+            <>
+              <br />
+              <div style={{ fontSize: "smaller", color: "white" }}>
+                User does not exist.
+              </div>
+            </>
           )}
           <br />
 
