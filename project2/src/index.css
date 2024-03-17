@@ -65,34 +65,8 @@ button:hover {
   text-decoration: underline;
 }
 
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  width: 20%;
-  background-color: black;
-  height: 100%; /* Full height */
-  position: fixed; /* Make it stick, even on scroll */
-  overflow: auto;
-}
-
-a {
-  text-decoration: none;
-  color: white;
-}
-
-/* a:hover {
-  background-color: #4e95d9;
-  color: black;
-} */
-
-a.active {
-  background-color: #4e95d9;
-  color: black;
-}
-
 .main {
-  margin-left: 20%;
+  margin-left: 25%;
   background-color: #262626;
 }
 

@@ -8,19 +8,41 @@ const OverLay = (props) => {
   return (
     <div className={styles.backdrop}>
       <div className={styles.modal}>
-        <button onClick={() => props.setShowModal(false)}>Close</button>
         <div>
-          <img
-            src={`https://media.themoviedb.org/t/p/w220_and_h330_face${props.imgurl}`}
-          ></img>
-          <div>
-            <h2>{props.title}</h2>
-            <p> &#9733; {props.rating} / 10 </p>
-            <p> {props.overview} </p>
-            <p> {props.releaseDate} </p>
+          <button
+            className={styles.cancel}
+            onClick={() => props.setShowModal(false)}
+            style={{ float: "right" }}
+          >
+            &#x2715;
+          </button>
+        </div>
+
+        <div className={`${styles.card} row`}>
+          <div className={`${styles.poster} col-4`}>
+            <img
+              src={`https://media.themoviedb.org/t/p/w220_and_h330_face${props.imgurl}`}
+            ></img>
           </div>
-          <WatchedButton></WatchedButton>
-          <ToWatchButton></ToWatchButton>
+
+          <div className={`${styles.description} col-8`}>
+            <h2>{props.title}</h2>
+            <p className={styles.rating}> &#9733; {props.rating} / 10 </p>
+
+            <div className="row">
+              <div className="col-6">
+                <WatchedButton></WatchedButton>
+              </div>
+              <div className="col-6">
+                <ToWatchButton></ToWatchButton>
+              </div>
+            </div>
+
+            <br />
+
+            <p className={styles.overview}> {props.overview} </p>
+            <p className={styles.date}> Release date: {props.releaseDate} </p>
+          </div>
         </div>
       </div>
     </div>
