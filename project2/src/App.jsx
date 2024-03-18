@@ -19,7 +19,7 @@ function App() {
   const [toWatchLimit, setToWatchLimit] = useState(false);
 
   useEffect(() => {
-    if (watched.length > 5) {
+    if (watched.length > 7) {
       alert(
         "You can't add any more movies to your Watched Movies as you have reached the maximum limit. Remove some from your list to continue."
       );
@@ -30,7 +30,7 @@ function App() {
   }, [watched]);
 
   useEffect(() => {
-    if (toWatch.length > 5) {
+    if (toWatch.length > 7) {
       alert(
         "You can't add any more movies to your To-Watch List as you have reached the maximum limit. Remove some from your list to continue."
       );

@@ -64,23 +64,23 @@ const Card = (props) => {
       )}
 
       {props.isOnRecPage && (
-        <button className="not-interested">
+        <button
+          className="not-interested"
+          onClick={() => {
+            removeRecommended();
+          }}
+        >
           <img className="thumbs-down-icon" src={thumbsDown} /> <br />
         </button>
       )}
 
       <div className="cards">
-        <div>
-          <img
-            src={`https://media.themoviedb.org/t/p/w220_and_h330_face${props.imgurl}`}
-          ></img>
-          {/* {props.isOnThisPage && (
-            <button className="not-interested">I'm Not Interested</button>
-          )} */}
-        </div>
+        <img
+          src={`https://media.themoviedb.org/t/p/w220_and_h330_face${props.imgurl}`}
+        ></img>
 
         <div className="content">
-          <div onClick={handleClick}>
+          <div className="show-modal" onClick={handleClick}>
             <h2>{props.title}</h2>
             <p> &#9733; {props.rating} / 10 </p>
           </div>

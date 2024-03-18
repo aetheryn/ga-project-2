@@ -94,6 +94,34 @@ button:disabled:hover {
   padding-bottom: 5rem;
 }
 
+.display {
+  margin-top: 10rem;
+}
+
+.top-overlay {
+  height: 20%;
+  display: block;
+  margin-left: -5%;
+  padding: 0;
+  top: 0;
+  background-image: linear-gradient(rgb(38, 38, 38, 0.8), rgb(38, 38, 38, 0));
+  width: 100%;
+  position: fixed;
+  overflow: auto;
+}
+
+.bottom-overlay {
+  height: 10%;
+  display: block;
+  margin-left: -5%;
+  padding: 0;
+  bottom: 0;
+  background-image: linear-gradient(rgb(38, 38, 38, 0), rgb(38, 38, 38, 0.8));
+  width: 100%;
+  position: fixed;
+  overflow: auto;
+}
+
 .search-bar {
   border-radius: 5px;
   border-color: transparent;
@@ -128,6 +156,10 @@ button:disabled:hover {
   display: grid;
   align-content: flex-start;
   /* flex-wrap: nowrap; */
+}
+
+.show-modal {
+  cursor: pointer;
 }
 
 .content > div > h2 {
@@ -176,9 +208,6 @@ button:disabled:hover {
 
 .active-card-button:hover {
   background-color: #4e95d9;
-}
-.display {
-  margin-top: 10rem;
 }
 
 h1 {

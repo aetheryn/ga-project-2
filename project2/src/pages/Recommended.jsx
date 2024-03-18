@@ -7,10 +7,6 @@ const Recommended = () => {
   const [isOnRecPage, setIsOnRecPage] = useState(true);
   const recContext = useContext(moviesContext);
 
-  // useEffect(() => {
-  //   setIsOnThisPage(!isOnThisPage);
-  // }, []);
-
   return (
     <>
       <div>
@@ -20,8 +16,10 @@ const Recommended = () => {
         <div className="row">
           <div className="col-1"></div>
           <div className="col-10 display">
+            <div className="top-overlay"></div>
             <h1>Similar to what you've watched...</h1>
             <RecMovs isOnRecPage={isOnRecPage}></RecMovs>
+            <div className="bottom-overlay"></div>
           </div>
           <div className="col-1"></div>
         </div>
