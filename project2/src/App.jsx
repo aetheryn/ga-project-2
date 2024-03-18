@@ -21,7 +21,7 @@ function App() {
   useEffect(() => {
     if (watched.length > 5) {
       alert(
-        "This is the last movie you can add to your Watched Movies as you have reached the maximum limit. Remove some from your list to continue."
+        "You can't add any more movies to your Watched Movies as you have reached the maximum limit. Remove some from your list to continue."
       );
       setWatchedLimit(true);
     } else {
@@ -32,7 +32,7 @@ function App() {
   useEffect(() => {
     if (toWatch.length > 5) {
       alert(
-        "This is the last movie you can add to your To-Watch List as you have reached the maximum limit. Remove some from your list to continue."
+        "You can't add any more movies to your To-Watch List as you have reached the maximum limit. Remove some from your list to continue."
       );
       setToWatchLimit(true);
     } else {
