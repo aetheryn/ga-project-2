@@ -3,6 +3,7 @@ import WatchedButton from "./WatchedButton";
 import ToWatchButton from "./ToWatchButton";
 import CardModal from "./CardModal";
 import moviesContext from "../context/movies-context";
+import thumbsDown from "../../../thumbsDown.png";
 
 const Card = (props) => {
   const cardContext = useContext(moviesContext);
@@ -62,10 +63,21 @@ const Card = (props) => {
         ></CardModal>
       )}
 
+      {props.isOnRecPage && (
+        <button className="not-interested">
+          <img className="thumbs-down-icon" src={thumbsDown} /> <br />
+        </button>
+      )}
+
       <div className="cards">
-        <img
-          src={`https://media.themoviedb.org/t/p/w220_and_h330_face${props.imgurl}`}
-        ></img>
+        <div>
+          <img
+            src={`https://media.themoviedb.org/t/p/w220_and_h330_face${props.imgurl}`}
+          ></img>
+          {/* {props.isOnThisPage && (
+            <button className="not-interested">I'm Not Interested</button>
+          )} */}
+        </div>
 
         <div className="content">
           <div onClick={handleClick}>

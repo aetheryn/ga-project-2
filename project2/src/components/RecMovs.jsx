@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import moviesContext from "../context/movies-context";
 import Card from "./Card";
 
-const RecMovs = () => {
+const RecMovs = (props) => {
   const recContext = useContext(moviesContext);
   const [recMovies, setRecMovies] = useState([]);
 
@@ -73,6 +73,7 @@ const RecMovs = () => {
               rating={Math.floor(item.vote_average * 10) / 10}
               releaseDate={item.release_date}
               recMovies={recMovies}
+              isOnRecPage={props.isOnRecPage}
             ></Card>
           </div>
         );

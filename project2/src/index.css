@@ -229,6 +229,38 @@ h1 {
   transform: scale(1.5);
 }
 
+.thumbs-down-icon {
+  height: 1rem;
+}
+
 .not-interested {
-  color: white;
+  position: absolute;
+  text-align: left;
+  /* bottom: 0; */
+  margin-top: 290px;
+  margin-left: 5px;
+  background-color: white;
+  opacity: 70%;
+  font-size: 0.5rem;
+  width: 2rem;
+  height: 2rem;
+  border: none;
+  cursor: pointer;
+  border-radius: 30%;
+  transition: transform 0.1s;
+}
+
+.not-interested:hover {
+  /* background-color: white; */
+  /* transform: scale(1.2); */
+  filter: invert(100%);
+  background-color: transparent;
+  border: none;
+  width: 20rem;
+}
+
+.not-interested:hover::after {
+  content: "I don't like this recommendation.";
+  font-size: 0.7rem;
+  font-weight: 400;
 }
