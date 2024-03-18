@@ -228,3 +228,7 @@ h1 {
 .search-icon:hover {
   transform: scale(1.5);
 }
+
+.not-interested {
+  color: white;
+}

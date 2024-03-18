@@ -29,9 +29,20 @@ const RecMovs = () => {
       if (response.ok) {
         const data = await response.json();
         console.log(data.results);
-        setRecMovies((prevState) => {
-          return [...prevState, data.results];
-        });
+
+        const tempArray = recMovies.map((movie) => movie.id);
+
+        let count = 0;
+
+        for (let i = 0; i < data.results.length; i++) {
+          if (count === 10) {
+            break;
+          }
+          if (!tempArray.includes(data.results[i].id)) {
+            setRecMovies((prevState) => [...prevState, data.results[i]]);
+            count += 1;
+          }
+        }
       }
     } catch (error) {
       if (error.name !== "AbortError") {
@@ -50,22 +61,21 @@ const RecMovs = () => {
 
   return (
     <div className="row">
-      {recMovies.map((array) => {
-        return array.slice(0, 10).map((item) => {
-          return (
-            <div className="col-3">
-              <Card
-                key={item.id}
-                movieId={item.id}
-                title={item.title}
-                overview={item.overview}
-                imgurl={item.poster_path}
-                rating={Math.floor(item.vote_average * 10) / 10}
-                releaseDate={item.release_date}
-              ></Card>
-            </div>
-          );
-        });
+      {recMovies.map((item) => {
+        return (
+          <div className="col-3">
+            <Card
+              key={item.id}
+              movieId={item.id}
+              title={item.title}
+              overview={item.overview}
+              imgurl={item.poster_path}
+              rating={Math.floor(item.vote_average * 10) / 10}
+              releaseDate={item.release_date}
+              recMovies={recMovies}
+            ></Card>
+          </div>
+        );
       })}
     </div>
   );
