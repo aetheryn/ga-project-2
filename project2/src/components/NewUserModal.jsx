@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import ReactDOM from "react-dom";
 import styles from "./UserModal.module.css";
 import icon from "../../../icon.png";
@@ -6,6 +6,33 @@ import icon from "../../../icon.png";
 const OverLay = (props) => {
   const [isInputValid, setIsInputValid] = useState(true);
   const [isUserCreated, setIsUserCreated] = useState(false);
+  const [tempUserArray, setTempUserArray] = useState([]);
+
+  const checkUser = async () => {
+    try {
+      const options = {
+        method: "GET",
+        headers: {
+          accept: "application/json",
+          Authorization: `Bearer ${import.meta.env.VITE_AIRTABLE_KEY}`,
+        },
+      };
+
+      const response = await fetch(
+        import.meta.env.VITE_AIRTABLE_SERVER,
+        options
+      );
+
+      if (response.ok) {
+        const data = await response.json();
+        setTempUserArray([...data.records]);
+      }
+    } catch (error) {
+      if (error.name !== "AbortError") {
+        console.log(error.message);
+      }
+    }
+  };
 
   const createUser = async () => {
     if (props.username.length >= 1 && props.username.length <= 20) {
@@ -45,13 +72,31 @@ const OverLay = (props) => {
     }
   };
 
+  useEffect(() => {
+    checkUser();
+  }, []);
+
   const handleCreate = (event) => {
     setIsInputValid(true);
+
+    for (let i = 0; i < tempUserArray.length; i++) {
+      if (props.username === tempUserArray[i].fields.username) {
+        console.log("Username exists.");
+        return props.setUserAlert(true);
+      }
+    }
+
     createUser();
     // if (props.isFetchDone && isUserCreated) {
     //   console.log("Retrieving...");
     //   props.retrieveUserData();
     // }
+  };
+
+  const handleChange = (event) => {
+    props.setUsername(event.target.value);
+    setIsInputValid(true);
+    props.setUserAlert(false);
   };
 
   return (
@@ -79,7 +124,7 @@ const OverLay = (props) => {
               placeholder="Enter New Username"
               type="text"
               onChange={(event) => {
-                props.setUsername(event.target.value);
+                handleChange(event);
               }}
             ></input>
 
@@ -104,10 +149,19 @@ const OverLay = (props) => {
               </>
             )}
 
-            {isUserCreated && (
+            {isUserCreated && !props.userAlert && (
               <>
                 <div style={{ color: "white", fontSize: "small" }}>
-                  User created. Close this page to login with your new username.
+                  User created.
+                </div>
+                <br />
+              </>
+            )}
+
+            {props.userAlert && (
+              <>
+                <div style={{ fontSize: "small", color: "white" }}>
+                  Username already exists.
                 </div>
                 <br />
               </>
@@ -131,6 +185,8 @@ const NewUserModal = (props) => {
           setShowNewUserModal={props.setShowNewUserModal}
           getAllRecords={props.getAllRecords}
           retrieveUserData={props.retrieveUserData}
+          userAlert={props.userAlert}
+          setUserAlert={props.setUserAlert}
         ></OverLay>,
         document.querySelector("#modal-root")
       )}

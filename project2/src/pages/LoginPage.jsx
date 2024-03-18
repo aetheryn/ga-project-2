@@ -35,6 +35,8 @@ const LoginPage = () => {
 
         userContext.setIsFetchDone(true);
         console.log(userContext.isFetchDone);
+
+        retrieveUserData(data.records);
       }
     } catch (error) {
       if (error.name !== "AbortError") {
@@ -43,30 +45,26 @@ const LoginPage = () => {
     }
   };
 
-  useEffect(() => {
-    getAllRecords();
-  }, []);
-
-  const retrieveUserData = () => {
+  const retrieveUserData = (allRecords) => {
     console.log("Retrieving User Data...");
 
-    for (let i = 0; i < userContext.allRecords.length; i++) {
-      console.log(`Reading line ${i + 1}...`);
-      console.log(userContext.username);
-      console.log(userContext.allRecords[i].fields.username);
+    for (let i = 0; i < allRecords.length; i++) {
+      // console.log(`Reading line ${i + 1}...`);
+      // console.log(userContext.username);
+      // console.log(userContext.allRecords[i].fields.username);
 
-      if (userContext.username === userContext.allRecords[i].fields.username) {
-        userContext.setRecordId(userContext.allRecords[i].id);
+      if (userContext.username === allRecords[i].fields.username) {
+        userContext.setRecordId(allRecords[i].id);
 
         userContext.setWatched(
-          Array.from(userContext.allRecords[i].fields.watched.split(","))
+          Array.from(allRecords[i].fields.watched.split(","))
         );
         userContext.setNotInterested(
-          Array.from(userContext.allRecords[i].fields.notInterested.split(","))
+          Array.from(allRecords[i].fields.notInterested.split(","))
         );
 
         userContext.setToWatch(
-          Array.from(userContext.allRecords[i].fields.toWatch.split(","))
+          Array.from(allRecords[i].fields.toWatch.split(","))
         );
 
         console.log("Login Successful");
@@ -78,6 +76,7 @@ const LoginPage = () => {
   };
 
   const handleLogIn = () => {
+    getAllRecords();
     if (userContext.isFetchDone) {
       retrieveUserData();
     }
@@ -144,6 +143,8 @@ const LoginPage = () => {
             setShowNewUserModal={setShowNewUserModal}
             getAllRecords={getAllRecords}
             retrieveUserData={retrieveUserData}
+            userAlert={userAlert}
+            setUserAlert={setUserAlert}
           ></NewUserModal>
         )}
       </div>
