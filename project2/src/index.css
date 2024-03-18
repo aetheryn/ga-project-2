@@ -94,6 +94,15 @@ button:disabled:hover {
   padding-bottom: 5rem;
 }
 
+.search-bar {
+  border-radius: 5px;
+  border-color: transparent;
+  width: 20rem;
+  height: 2rem;
+  padding-left: 1rem;
+  font-size: smaller;
+}
+
 .cards {
   display: flex;
   flex-wrap: wrap;
@@ -172,7 +181,7 @@ button:disabled:hover {
   margin-top: 10rem;
 }
 
-.main > div > div > h1 {
+.main > div > div > div > div > h1 {
   text-transform: uppercase;
   color: white;
   font-weight: 700;
@@ -199,4 +208,23 @@ button:disabled:hover {
   color: white;
   border-color: transparent;
   font-size: 2rem;
+}
+
+.search-btn {
+  margin-left: 0.5rem;
+  background-color: #4e95d9;
+  border-color: transparent;
+  border-radius: 5px;
+  height: 2rem;
+  width: 2rem;
+}
+
+.search-icon {
+  height: 1.1rem;
+  width: 1.1rem;
+  transition: transform 0.1s;
+}
+
+.search-icon:hover {
+  transform: scale(1.5);
 }

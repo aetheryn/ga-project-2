@@ -3,6 +3,7 @@ import NavBar from "../components/NavBar";
 import Movies from "../components/Movies";
 import PrevButton from "../components/PrevButton";
 import NextButton from "../components/NextButton";
+import search from "../../../search.png";
 
 const AllMovies = () => {
   const [pageNum, setPageNum] = useState(1);
@@ -21,7 +22,26 @@ const AllMovies = () => {
         <div className="row">
           <div className="col-1"></div>
           <div className="col-10 display">
-            <h1>Movies List</h1>
+            <div className="row">
+              <div className="col-7">
+                <h1>Movies List</h1>
+              </div>
+
+              <div
+                className="col-5"
+                style={{ display: "flex", alignItems: "center" }}
+              >
+                <input
+                  className="search-bar"
+                  type="text"
+                  placeholder="Search for movies..."
+                ></input>
+                <button className="search-btn">
+                  <img className="search-icon" src={search} />
+                </button>
+              </div>
+            </div>
+
             <Movies pageNum={pageNum}></Movies>
           </div>
           <div className="col-1"></div>
