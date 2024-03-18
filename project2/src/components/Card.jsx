@@ -63,7 +63,7 @@ const Card = (props) => {
         ></CardModal>
       )}
 
-      {props.isOnRecPage && (
+      {/* {props.isOnRecPage && (
         <button
           className="not-interested"
           onClick={() => {
@@ -72,7 +72,7 @@ const Card = (props) => {
         >
           <img className="thumbs-down-icon" src={thumbsDown} /> <br />
         </button>
-      )}
+      )} */}
 
       <div className="cards">
         <img
