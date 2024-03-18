@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import Card from "./Card";
 
 const Movies = (props) => {
-  const [populars, setPopulars] = useState([]);
+  const [displayedMovs, setDisplayedMovs] = useState([]);
 
   const getPopulars = async (signal) => {
     try {
@@ -18,14 +18,45 @@ const Movies = (props) => {
 
       const response = await fetch(
         import.meta.env.VITE_PUBLIC_SERVER +
-          "popular?language=en-US&page=" +
+          "movie/popular?language=en-US&page=" +
           props.pageNum,
         options
       );
 
       if (response.ok) {
         const data = await response.json();
-        setPopulars(data.results);
+        setDisplayedMovs(data.results);
+      }
+    } catch (error) {
+      if (error.name !== "AbortError") {
+        console.log(error.message);
+      }
+    }
+  };
+
+  const getSearchedMovie = async (signal) => {
+    try {
+      const options = {
+        method: "GET",
+        headers: {
+          accept: "application/json",
+          Authorization: `Bearer ${import.meta.env.VITE_PUBLIC_KEY}`,
+        },
+        signal,
+      };
+
+      const response = await fetch(
+        import.meta.env.VITE_PUBLIC_SERVER +
+          "search/movie?query=" +
+          encodeURIComponent(props.searchInput.trim()) +
+          "&include_adult=false&language=en-US&page=" +
+          props.pageNum,
+        options
+      );
+
+      if (response.ok) {
+        const data = await response.json();
+        setDisplayedMovs(data.results);
       }
     } catch (error) {
       if (error.name !== "AbortError") {
@@ -36,7 +67,12 @@ const Movies = (props) => {
 
   useEffect(() => {
     const controller = new AbortController();
-    getPopulars(controller.signal);
+
+    if (props.searchInput.length == 0) {
+      getPopulars(controller.signal);
+    } else {
+      getSearchedMovie(controller.signal);
+    }
 
     return () => {
       controller.abort();
@@ -45,7 +81,7 @@ const Movies = (props) => {
 
   return (
     <div className="row">
-      {populars.map((item) => {
+      {displayedMovs.map((item) => {
         return (
           <div className="col-3">
             <Card

@@ -20,6 +20,7 @@ const RecMovs = () => {
 
       const response = await fetch(
         import.meta.env.VITE_PUBLIC_SERVER +
+          "movie/" +
           id +
           "/recommendations?language=en-US&page=1",
         options
@@ -40,11 +41,12 @@ const RecMovs = () => {
   };
 
   useEffect(() => {
+    setRecMovies([]);
     for (let i = 2; i < recContext.watched.length; i++) {
       getRecommendations(recContext.watched[i]);
       console.log(`useEffect renders count ${i}`);
     }
-  }, []);
+  }, [recContext.watched]);
 
   return (
     <div className="row">

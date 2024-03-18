@@ -18,7 +18,7 @@ const WatchedMovies = () => {
       };
 
       const response = await fetch(
-        import.meta.env.VITE_PUBLIC_SERVER + id + "?language=en-US",
+        import.meta.env.VITE_PUBLIC_SERVER + "movie/" + id + "?language=en-US",
         options
       );
 

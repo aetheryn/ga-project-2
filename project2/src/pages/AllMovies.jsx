@@ -7,12 +7,15 @@ import search from "../../../search.png";
 
 const AllMovies = () => {
   const [pageNum, setPageNum] = useState(1);
+  const [searchInput, setSearchInput] = useState("");
+
   const handlePlus = () => {
     setPageNum((prevPageNum) => prevPageNum + 1);
   };
   const handleMinus = () => {
     setPageNum((prevPageNum) => prevPageNum - 1);
   };
+
   return (
     <>
       <div>
@@ -32,9 +35,14 @@ const AllMovies = () => {
                 style={{ display: "flex", alignItems: "center" }}
               >
                 <input
+                  id="search"
+                  value={searchInput}
                   className="search-bar"
                   type="text"
                   placeholder="Search for movies..."
+                  onChange={(event) => {
+                    setSearchInput(event.target.value);
+                  }}
                 ></input>
                 <button className="search-btn">
                   <img className="search-icon" src={search} />
@@ -42,7 +50,7 @@ const AllMovies = () => {
               </div>
             </div>
 
-            <Movies pageNum={pageNum}></Movies>
+            <Movies searchInput={searchInput} pageNum={pageNum}></Movies>
           </div>
           <div className="col-1"></div>
         </div>
