@@ -14,19 +14,14 @@ const WatchedButton = (props) => {
     });
   };
 
-  // const removeWatched = () => {
-  //   console.log(watchedBtnCtx.watched.indexOf(`${props.movieId}`));
-  //   const tempWatchedArray = [...watchedBtnCtx.watched];
-  //   tempWatchedArray.splice(tempWatchedArray.indexOf(`${props.movieId}`), 1);
-  //   watchedBtnCtx.setWatched(tempWatchedArray);
-  //   console.log(watchedBtnCtx.toWatch);
-  //   props.setIsWatched(false);
-  // };
-
   return (
     <>
       {!props.isWatched && (
-        <button onClick={() => addWatched()} className="card-button">
+        <button
+          onClick={() => addWatched()}
+          className="card-button"
+          disabled={watchedBtnCtx.watchedLimit}
+        >
           Add to Watched
         </button>
       )}

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import LoginPage from "./pages/LoginPage";
 import { Navigate, Route, Routes } from "react-router-dom";
 import moviesContext from "./context/movies-context";
@@ -15,6 +15,30 @@ function App() {
   const [watched, setWatched] = useState([]);
   const [notInterested, setNotInterested] = useState([]);
   const [toWatch, setToWatch] = useState([]);
+  const [watchedLimit, setWatchedLimit] = useState(false);
+  const [toWatchLimit, setToWatchLimit] = useState(false);
+
+  useEffect(() => {
+    if (watched.length > 5) {
+      alert(
+        "This is the last movie you can add to your Watched Movies as you have reached the maximum limit. Remove some from your list to continue."
+      );
+      setWatchedLimit(true);
+    } else {
+      setWatchedLimit(false);
+    }
+  }, [watched]);
+
+  useEffect(() => {
+    if (toWatch.length > 5) {
+      alert(
+        "This is the last movie you can add to your To-Watch List as you have reached the maximum limit. Remove some from your list to continue."
+      );
+      setToWatchLimit(true);
+    } else {
+      setToWatchLimit(false);
+    }
+  }, [toWatch]);
 
   return (
     <moviesContext.Provider
@@ -33,6 +57,8 @@ function App() {
         setNotInterested,
         toWatch,
         setToWatch,
+        watchedLimit,
+        toWatchLimit,
       }}
     >
       <Routes>

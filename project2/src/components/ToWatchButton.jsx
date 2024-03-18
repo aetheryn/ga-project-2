@@ -13,19 +13,14 @@ const ToWatchButton = (props) => {
     });
   };
 
-  // const removeToWatch = () => {
-  //   console.log(toWatchBtnContext.toWatch.indexOf(`${props.movieId}`));
-  //   const tempToWatchArray = [...toWatchBtnContext.toWatch];
-  //   tempToWatchArray.splice(tempToWatchArray.indexOf(`${props.movieId}`), 1);
-  //   toWatchBtnContext.setToWatch(tempToWatchArray);
-  //   console.log(toWatchBtnContext.toWatch);
-  //   props.setIsToWatch(false);
-  // };
-
   return (
     <>
       {!props.isToWatch && (
-        <button onClick={() => addToWatch()} className="card-button">
+        <button
+          onClick={() => addToWatch()}
+          className="card-button"
+          disabled={toWatchBtnContext.toWatchLimit}
+        >
           Add to To-Watch List
         </button>
       )}
