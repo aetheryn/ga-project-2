@@ -1,3 +1,10 @@
 {
-  "routes": [{ "src": "/[^.]+", "dest": "/", "status": 200 }]
+  "routes": [
+    { "src": "/", "dest": "/" },
+    { "src": "/main", "dest": "/" },
+    { "src": "/discover", "dest": "/" },
+    { "src": "/recommended", "dest": "/" },
+    { "src": "/watched", "dest": "/" },
+    { "src": "/to-watch", "dest": "/" }
+  ]
 }
