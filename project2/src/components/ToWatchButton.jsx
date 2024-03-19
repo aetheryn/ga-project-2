@@ -4,7 +4,7 @@ import moviesContext from "../context/movies-context";
 const ToWatchButton = (props) => {
   const toWatchBtnContext = useContext(moviesContext);
 
-  // --- Add to To-Watch list --- //
+  // --- Set state of To-Watch / add to To-Watch list & remove from Watched --- //
 
   const addToWatch = () => {
     if (props.isWatched) {

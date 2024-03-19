@@ -5,6 +5,8 @@ import Card from "./Card";
 const Movies = (props) => {
   const [displayedMovs, setDisplayedMovs] = useState([]);
 
+  // --- Get a list of all movies --- //
+
   const getPopulars = async (signal) => {
     try {
       const options = {
@@ -33,6 +35,8 @@ const Movies = (props) => {
       }
     }
   };
+
+  // --- Get list of movies based on search bar --- //
 
   const getSearchedMovie = async (signal) => {
     try {
@@ -64,6 +68,8 @@ const Movies = (props) => {
       }
     }
   };
+
+  // --- Initialise which function to use based on search bar state --- //
 
   useEffect(() => {
     const controller = new AbortController();

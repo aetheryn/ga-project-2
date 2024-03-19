@@ -1,7 +1,6 @@
-import React, { useContext, useState } from "react";
+import React from "react";
 import NavBar from "../components/NavBar";
 import WatchedMovies from "../components/WatchedMovies";
-import moviesContext from "../context/movies-context";
 
 const Watched = () => {
   return (
