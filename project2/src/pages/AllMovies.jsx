@@ -9,12 +9,16 @@ const AllMovies = () => {
   const [pageNum, setPageNum] = useState(1);
   const [searchInput, setSearchInput] = useState("");
 
+  // --- Handle page numbers --- //
+
   const handlePlus = () => {
     setPageNum((prevPageNum) => prevPageNum + 1);
   };
   const handleMinus = () => {
     setPageNum((prevPageNum) => prevPageNum - 1);
   };
+
+  // --- Handle change in search bar --- //
 
   const handleChange = (event) => {
     setSearchInput(event.target.value);

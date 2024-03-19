@@ -6,6 +6,8 @@ const WatchedMovies = () => {
   const watchedContext = useContext(moviesContext);
   const [watchedMovies, setWatchedMovies] = useState([]);
 
+  // --- Get details of a movie in Watched list --- //
+
   const getWatchedMovie = async (id) => {
     console.log(`Getting ${id}'s movie data.`);
     try {
@@ -27,7 +29,6 @@ const WatchedMovies = () => {
         setWatchedMovies((prevState) => {
           return [...prevState, { data }];
         });
-        console.log("Ok");
       }
     } catch (error) {
       if (error.name !== "AbortError") {
@@ -36,11 +37,11 @@ const WatchedMovies = () => {
     }
   };
 
+  // --- Initialise above function upon mount for each movie ID --- //
+
   useEffect(() => {
-    console.log(watchedContext.watched);
     for (let i = 2; i < watchedContext.watched.length; i++) {
       getWatchedMovie(watchedContext.watched[i]);
-      console.log(`useEffect renders count ${i}`);
     }
   }, []);
 

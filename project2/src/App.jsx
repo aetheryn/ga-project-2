@@ -13,7 +13,6 @@ function App() {
   const [recordId, setRecordId] = useState("");
   const [username, setUsername] = useState("");
   const [watched, setWatched] = useState([]);
-  const [notInterested, setNotInterested] = useState([]);
   const [toWatch, setToWatch] = useState([]);
   const [watchedLimit, setWatchedLimit] = useState(false);
   const [toWatchLimit, setToWatchLimit] = useState(false);
@@ -21,7 +20,7 @@ function App() {
   useEffect(() => {
     if (watched.length > 7) {
       alert(
-        "You can't add any more movies to your Watched Movies as you have reached the maximum limit. Remove some from your list to continue."
+        "You will not be able to add any more movies to your Watched Movies as you have reached the maximum limit. Remove some from your list to continue."
       );
       setWatchedLimit(true);
     } else {
@@ -32,7 +31,7 @@ function App() {
   useEffect(() => {
     if (toWatch.length > 7) {
       alert(
-        "You can't add any more movies to your To-Watch List as you have reached the maximum limit. Remove some from your list to continue."
+        "You will not be able to add any more movies to your To-Watch List as you have reached the maximum limit. Remove some from your list to continue."
       );
       setToWatchLimit(true);
     } else {
@@ -53,8 +52,6 @@ function App() {
         setUsername,
         watched,
         setWatched,
-        notInterested,
-        setNotInterested,
         toWatch,
         setToWatch,
         watchedLimit,

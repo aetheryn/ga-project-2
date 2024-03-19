@@ -9,7 +9,8 @@ const LoginPage = () => {
   const [userAlert, setUserAlert] = useState(false);
   const [userLogin, setUserLogin] = useState(false);
   const [showNewUserModal, setShowNewUserModal] = useState(false);
-  const usernameRef = useRef();
+
+  // --- Fetch all entries in Airtable --- //
 
   const getAllRecords = async () => {
     try {
@@ -28,14 +29,8 @@ const LoginPage = () => {
 
       if (response.ok) {
         const data = await response.json();
-        console.log(data);
-
         userContext.setAllRecords(data.records);
-        console.log(userContext.allRecords);
-
         userContext.setIsFetchDone(true);
-        console.log(userContext.isFetchDone);
-
         retrieveUserData(data.records);
       }
     } catch (error) {
@@ -45,29 +40,18 @@ const LoginPage = () => {
     }
   };
 
+  // --- Read each Airtable row to find a matching username & retrieve data from columns to set states --- //
+
   const retrieveUserData = (allRecords) => {
-    console.log("Retrieving User Data...");
-
     for (let i = 0; i < allRecords.length; i++) {
-      // console.log(`Reading line ${i + 1}...`);
-      // console.log(userContext.username);
-      // console.log(userContext.allRecords[i].fields.username);
-
       if (userContext.username === allRecords[i].fields.username) {
         userContext.setRecordId(allRecords[i].id);
-
         userContext.setWatched(
           Array.from(allRecords[i].fields.watched.split(","))
         );
-        userContext.setNotInterested(
-          Array.from(allRecords[i].fields.notInterested.split(","))
-        );
-
         userContext.setToWatch(
           Array.from(allRecords[i].fields.toWatch.split(","))
         );
-
-        console.log("Login Successful");
         setUserLogin(true);
       }
     }
@@ -75,16 +59,16 @@ const LoginPage = () => {
     setUserAlert(true);
   };
 
+  // --- Initialise functions upon clicking login --- //
+
   const handleLogIn = () => {
     getAllRecords();
-    if (userContext.isFetchDone) {
-      retrieveUserData();
-    }
   };
+
+  // --- Initialise functions to trigger modal to create new user --- //
 
   const handleCreate = () => {
     userContext.setIsFetchDone(false);
-    console.log(userContext.isFetchDone);
     setShowNewUserModal(true);
   };
 
@@ -151,11 +135,6 @@ const LoginPage = () => {
 
       {userLogin && userContext.isFetchDone && (
         <>
-          {/* <div>{userContext.username}</div>
-          <div>{userContext.recordId}</div>
-          <div>{userContext.watched}</div>
-          <div>{userContext.notInterested}</div>
-          <div>{userContext.toWatch}</div> */}
           <Navigate to="/discover" replace={true} />
         </>
       )}

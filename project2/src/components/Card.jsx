@@ -11,35 +11,36 @@ const Card = (props) => {
   const [isWatched, setIsWatched] = useState(false);
   const [isToWatch, setIsToWatch] = useState(false);
 
+  // --- Set button states with every movie card render --- //
+
   useEffect(() => {
     if (cardContext.watched.indexOf(`${props.movieId}`) > 1) {
       setIsWatched(true);
     }
-
     if (cardContext.toWatch.indexOf(`${props.movieId}`) > 1) {
       setIsToWatch(true);
     }
   });
 
+  // --- Open movie card details --- //
+
   const handleClick = () => {
     setShowModal(true);
   };
 
+  // --- Toggle buttons when either is clicked --- //
+
   const removeWatched = () => {
-    console.log(cardContext.watched.indexOf(`${props.movieId}`));
     const tempWatchedArray = [...cardContext.watched];
     tempWatchedArray.splice(tempWatchedArray.indexOf(`${props.movieId}`), 1);
     cardContext.setWatched(tempWatchedArray);
-    console.log(cardContext.toWatch);
     setIsWatched(false);
   };
 
   const removeToWatch = () => {
-    console.log(cardContext.toWatch.indexOf(`${props.movieId}`));
     const tempToWatchArray = [...cardContext.toWatch];
     tempToWatchArray.splice(tempToWatchArray.indexOf(`${props.movieId}`), 1);
     cardContext.setToWatch(tempToWatchArray);
-    console.log(cardContext.toWatch);
     setIsToWatch(false);
   };
 
@@ -62,17 +63,6 @@ const Card = (props) => {
           removeToWatch={removeToWatch}
         ></CardModal>
       )}
-
-      {/* {props.isOnRecPage && (
-        <button
-          className="not-interested"
-          onClick={() => {
-            removeRecommended();
-          }}
-        >
-          <img className="thumbs-down-icon" src={thumbsDown} /> <br />
-        </button>
-      )} */}
 
       <div className="cards">
         <img

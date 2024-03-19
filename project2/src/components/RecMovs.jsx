@@ -6,9 +6,9 @@ const RecMovs = (props) => {
   const recContext = useContext(moviesContext);
   const [recMovies, setRecMovies] = useState([]);
 
-  const getRecommendations = async (id) => {
-    console.log(`Getting ${id}'s movie data.`);
+  // --- Get recommendations based on one watched movie ID --- //
 
+  const getRecommendations = async (id) => {
     try {
       const options = {
         method: "GET",
@@ -28,7 +28,6 @@ const RecMovs = (props) => {
 
       if (response.ok) {
         const data = await response.json();
-        console.log(data.results);
 
         const tempArray = recMovies.map((movie) => movie.id);
 
@@ -51,11 +50,11 @@ const RecMovs = (props) => {
     }
   };
 
+  // --- Initialise getting recommendations --- //
+
   useEffect(() => {
-    setRecMovies([]);
     for (let i = 2; i < recContext.watched.length; i++) {
       getRecommendations(recContext.watched[i]);
-      console.log(`useEffect renders count ${i}`);
     }
   }, []);
 

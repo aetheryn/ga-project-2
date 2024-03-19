@@ -8,6 +8,8 @@ const OverLay = (props) => {
   const [isUserCreated, setIsUserCreated] = useState(false);
   const [tempUserArray, setTempUserArray] = useState([]);
 
+  // --- Get all users from Airtable --- //
+
   const checkUser = async () => {
     try {
       const options = {
@@ -33,6 +35,8 @@ const OverLay = (props) => {
       }
     }
   };
+
+  // --- Create new user in Airtable --- //
 
   const createUser = async () => {
     if (props.username.length >= 1 && props.username.length <= 20) {
@@ -72,26 +76,27 @@ const OverLay = (props) => {
     }
   };
 
+  // --- Initialise check user upon mount --- //
+
   useEffect(() => {
     checkUser();
   }, []);
+
+  // --- Initialise creating new user --- //
 
   const handleCreate = (event) => {
     setIsInputValid(true);
 
     for (let i = 0; i < tempUserArray.length; i++) {
       if (props.username === tempUserArray[i].fields.username) {
-        console.log("Username exists.");
         return props.setUserAlert(true);
       }
     }
 
     createUser();
-    // if (props.isFetchDone && isUserCreated) {
-    //   console.log("Retrieving...");
-    //   props.retrieveUserData();
-    // }
   };
+
+  // --- Set username state upon change in input field --- //
 
   const handleChange = (event) => {
     props.setUsername(event.target.value);

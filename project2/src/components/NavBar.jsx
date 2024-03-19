@@ -8,9 +8,9 @@ const NavBar = () => {
   const [isLoggedOut, setIsLoggedOut] = useState(false);
   const navBarContext = useContext(moviesContext);
 
+  // --- Update data on Airtable --- //
+
   const storeData = async () => {
-    console.log(navBarContext.watched);
-    console.log(navBarContext.watched.toString());
     try {
       const options = {
         method: "PATCH",
@@ -22,7 +22,6 @@ const NavBar = () => {
           fields: {
             username: navBarContext.username,
             watched: navBarContext.watched.toString(),
-            notInterested: navBarContext.notInterested.toString(),
             toWatch: navBarContext.toWatch.toString(),
           },
         }),
@@ -34,7 +33,6 @@ const NavBar = () => {
       );
 
       if (response.ok) {
-        console.log("OK!");
         setIsLoggedOut(true);
       }
     } catch (error) {
@@ -44,12 +42,13 @@ const NavBar = () => {
     }
   };
 
+  // --- Handle click on log-out --- //
+
   const handleLogOut = () => {
     storeData();
     navBarContext.setUsername("");
     navBarContext.setRecordId("");
     navBarContext.setWatched([]);
-    navBarContext.setNotInterested([]);
     navBarContext.setToWatch([]);
   };
 

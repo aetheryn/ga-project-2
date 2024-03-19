@@ -4,10 +4,13 @@ import moviesContext from "../context/movies-context";
 const ToWatchButton = (props) => {
   const toWatchBtnContext = useContext(moviesContext);
 
+  // --- Add to To-Watch list --- //
+
   const addToWatch = () => {
     if (props.isWatched) {
       props.removeWatched();
     }
+
     toWatchBtnContext.setToWatch((prevState) => {
       return [...prevState, `${props.movieId}`];
     });

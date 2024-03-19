@@ -6,6 +6,8 @@ const ToWatchMovies = () => {
   const toWatchContext = useContext(moviesContext);
   const [toWatchMovies, setToWatchMovies] = useState([]);
 
+  // --- Get details of a movie in To-Watch list --- //
+
   const getToWatchMovie = async (id) => {
     console.log(`Getting ${id}'s movie data.`);
     try {
@@ -18,7 +20,7 @@ const ToWatchMovies = () => {
       };
 
       const response = await fetch(
-        import.meta.env.VITE_PUBLIC_SERVER + "/movie/" + id + "?language=en-US",
+        import.meta.env.VITE_PUBLIC_SERVER + "movie/" + id + "?language=en-US",
         options
       );
 
@@ -27,7 +29,6 @@ const ToWatchMovies = () => {
         setToWatchMovies((prevState) => {
           return [...prevState, { data }];
         });
-        console.log("Ok");
       }
     } catch (error) {
       if (error.name !== "AbortError") {
@@ -36,10 +37,11 @@ const ToWatchMovies = () => {
     }
   };
 
+  // --- Initialise above function upon mount for each movie ID --- //
+
   useEffect(() => {
     for (let i = 2; i < toWatchContext.toWatch.length; i++) {
       getToWatchMovie(toWatchContext.toWatch[i]);
-      console.log(`useEffect renders count ${i}`);
     }
   }, []);
 

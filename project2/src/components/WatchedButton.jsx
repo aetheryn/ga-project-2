@@ -1,8 +1,10 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import moviesContext from "../context/movies-context";
 
 const WatchedButton = (props) => {
   const watchedBtnCtx = useContext(moviesContext);
+
+  // --- Set state of watched / add to Watched list & remove from To-Watch --- //
 
   const addWatched = () => {
     if (props.isToWatch) {
