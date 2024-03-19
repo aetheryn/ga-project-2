@@ -1,5 +1,5 @@
 {
-  "routes": [
+  "rewrites": [
     { "src": "/", "dest": "/" },
     { "src": "/main", "dest": "/" },
     { "src": "/discover", "dest": "/" },
