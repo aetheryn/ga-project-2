@@ -1,10 +1,10 @@
 {
   "rewrites": [
-    { "source": "/", "destination": "/" },
-    { "source": "/main", "destination": "/" },
-    { "source": "/discover", "destination": "/" },
-    { "source": "/recommended", "destination": "/" },
-    { "source": "/watched", "destination": "/" },
-    { "source": "/to-watch", "destination": "/" }
+    { "source": "/", "destination": "/index.html" },
+    { "source": "/main", "destination": "/index.html" },
+    { "source": "/discover", "destination": "/index.html" },
+    { "source": "/recommended", "destination": "/index.html" },
+    { "source": "/watched", "destination": "/index.html" },
+    { "source": "/to-watch", "destination": "/index.html" }
   ]
 }
