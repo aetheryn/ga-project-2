@@ -1,8 +1,8 @@
 # Cinepals
 
-Unveiling Cinepals, your personal movie companion, a creation born out of a desire to build a platform that could serve as the meeting point for your diverse watch history scattered across various OTTs or streaming services. Imagine, a single cosy digital corner where all your viewed content comes together, a place that knows your movie tastes as well as you do. The dream was to have your accounts across those services linked, your watch history automatically consolidated, and voila, a collection of your entire film-watching history to date. However, life, as we know it, often has its way of throwing a curveball or two. In this case, the OTTs decided to keep their APIs off the public domain, thus keeping our dream a little distant.
+Unveiling Cinepals, your personal movie companion, a creation born out of a desire to build a platform that could serve as the meeting point for your diverse watch history scattered across various OTTs or streaming services. It is a single cosy digital corner where all your viewed content comes together, where the dream was to have your accounts linked, your watch history automatically consolidated, and _voila_, a collection of your entire film-watching history to date. However, life often has its way of throwing a curveball or two, and in this case, the OTTs decided to keep their APIs off the public domain, thus keeping our dream a little distant.
 
-But hey, nothing can dampen our spirits, and so we came up with an alternative. Instead of an automatic history pull, the users (you, yes you) are given power to manually add the movies you’ve watched. A bit of an effort, yes, but think of it as contributing to your own personalised movie library, each movie a bookmark in the chapters of your cinematic journey. Great thing is it doesn’t stop there— once you’ve added your movies, our app gets to work. Like a diligent personal assistant, it starts to generate customised movie recommendations for you based on your watch history. It’s almost as if the app gets to know your movie preferences, your likes and dislikes, and curates a list that is as unique as you are. But wait, there's more; we know how easily we all lose track of movies we’ve been meaning to watch. Enter your personal to-watch list. A space where you can add all those movies you’ve been intending to see but keep forgetting about. No more forgetting or missing out on the movies you want to watch.
+So, we had to come up with an alternative. Instead of an automatic history pull, the users (you, yes you) are given power to manually add the movies you’ve watched. A bit of an effort, yes, but think of it as contributing to your own personalised movie library, each movie a bookmark in the chapters of your cinematic journey. Great thing is it doesn’t stop there— once you’ve added your movies, our app gets to work. Like a diligent personal assistant, it starts to generate customised movie recommendations for you based on your watch history. It’s almost as if the app gets to know your movie preferences and curates a list that is as unique as you are. But wait, there's more; we know how easily we all lose track of movies we’ve been meaning to watch. Enter your personal to-watch list. A space where you can add all those movies you’ve been intending to see but keep forgetting about. No more forgetting or missing out on the movies you want to watch.
 
 ## Screenshots
 
@@ -20,6 +20,10 @@ But hey, nothing can dampen our spirits, and so we came up with an alternative. 
 
 ### To-Watch List
 <img width="1440" alt="Screenshot 2024-03-19 at 9 22 04 PM" src="https://github.com/aetheryn/ga-project-2/assets/158107061/851872c4-5217-4f63-9d46-613985d76410">
+
+> To get more details about the movie, each movie card can be clicked.
+> <img width="1440" alt="Screenshot 2024-03-20 at 9 23 32 AM" src="https://github.com/aetheryn/ga-project-2/assets/158107061/d0f57682-98b3-4724-9fd5-e4fd4367ab7b">
+
 
 ## Technologies Used
 
