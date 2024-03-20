@@ -31,6 +31,7 @@ ReactJS, ReactDOM, React Router, HTML, CSS
 
 ## Getting Started
 
+Click [here](https://cinepals.vercel.app/) to access the app.
 Access the project’s public board [here](https://github.com/users/aetheryn/projects/1).
 
 ## Next Steps
