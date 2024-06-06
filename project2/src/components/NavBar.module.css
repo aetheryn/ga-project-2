@@ -11,7 +11,7 @@
 }
 
 .navlinks {
-  margin-top: -1.7rem;
+  /* margin-top: -1.7rem; */
 }
 
 li > a {
@@ -33,14 +33,12 @@ li > a.active {
 }
 
 .navicon {
-  margin-top: -1.7rem;
-  display: grid;
-  justify-content: center;
-  align-items: center;
+  margin: auto;
 }
 
 .icon {
-  height: 200px;
+  height: 10rem;
+  margin: -1rem 0 -1rem 0;
 }
 
 .logout {
@@ -57,6 +55,4 @@ li > a.active {
   font-size: 100%;
   background-color: transparent;
   border-color: transparent;
-  /* width: 150px;
-  height: 200%; */
 }
