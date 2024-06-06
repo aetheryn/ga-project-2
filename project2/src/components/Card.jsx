@@ -75,26 +75,26 @@ const Card = (props) => {
             <p> &#9733; {props.rating} / 10 </p>
           </div>
           <div className="card-buttons">
-            <div className="row">
-              <WatchedButton
-                movieId={props.movieId}
-                isToWatch={isToWatch}
-                removeToWatch={removeToWatch}
-                isWatched={isWatched}
-                setIsWatched={setIsWatched}
-                removeWatched={removeWatched}
-              ></WatchedButton>
-            </div>
-            <div className="row">
-              <ToWatchButton
-                movieId={props.movieId}
-                isWatched={isWatched}
-                removeWatched={removeWatched}
-                isToWatch={isToWatch}
-                setIsToWatch={setIsToWatch}
-                removeToWatch={removeToWatch}
-              ></ToWatchButton>
-            </div>
+            {/* <div> */}
+            <WatchedButton
+              movieId={props.movieId}
+              isToWatch={isToWatch}
+              removeToWatch={removeToWatch}
+              isWatched={isWatched}
+              setIsWatched={setIsWatched}
+              removeWatched={removeWatched}
+            ></WatchedButton>
+            {/* </div> */}
+            {/* <div> */}
+            <ToWatchButton
+              movieId={props.movieId}
+              isWatched={isWatched}
+              removeWatched={removeWatched}
+              isToWatch={isToWatch}
+              setIsToWatch={setIsToWatch}
+              removeToWatch={removeToWatch}
+            ></ToWatchButton>
+            {/* </div> */}
           </div>
         </div>
       </div>

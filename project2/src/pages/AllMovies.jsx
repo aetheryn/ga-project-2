@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import NavBar from "../components/NavBar";
 import Movies from "../components/Movies";
-import PrevButton from "../components/PrevButton";
-import NextButton from "../components/NextButton";
+// import PrevButton from "../components/PrevButton";
+// import NextButton from "../components/NextButton";
 import search from "../../../search.png";
+import PageButton from "../components/PageButton";
 
 const AllMovies = () => {
   const [pageNum, setPageNum] = useState(1);
@@ -69,7 +70,9 @@ const AllMovies = () => {
         <div className="page row">
           <div className="col-4"></div>
           <div className="col-1">
-            {pageNum !== 1 && <PrevButton onClick={handleMinus}></PrevButton>}
+            {pageNum !== 1 && (
+              <PageButton onClick={handleMinus}>&#8249;</PageButton>
+            )}
           </div>
 
           <div className="page-num col-2">
@@ -77,7 +80,7 @@ const AllMovies = () => {
           </div>
 
           <div className="next-btn col-1">
-            <NextButton onClick={handlePlus}></NextButton>
+            <PageButton onClick={handlePlus}>&#8250;</PageButton>
           </div>
           <div className="col-4"></div>
         </div>
